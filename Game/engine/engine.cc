@@ -1,5 +1,5 @@
 #include "engine.hh"
-#include <creategame.hh>
+#include "creategame.hh"
 
 namespace StudentSide
 {
@@ -13,6 +13,8 @@ Engine::Engine() :
 
 void Engine::start()
 {
+    QImage im(BACKROUND);
+    window_->setPicture(im);
     window_->show();
 }
 

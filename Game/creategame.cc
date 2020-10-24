@@ -1,8 +1,9 @@
 #include "creategame.hh"
-
+#include "city.hh"
 
 std::shared_ptr<Interface::ICity> Interface::createGame()
 {
-    return nullptr;
+    std::shared_ptr<Studentside::City> city;
+    return city;
 }
 

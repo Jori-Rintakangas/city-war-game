@@ -7,6 +7,8 @@
 #include "graphics/simpleactoritem.hh"
 #include "core/logic.hh"
 
+const QString BACKROUND = ":/offlinedata/offlinedata/kartta_pieni_500x500.png";
+
 namespace StudentSide
 {
 
@@ -22,6 +24,8 @@ private:
     std::shared_ptr<Interface::ICity> city_ = nullptr;
     std::shared_ptr<CourseSide::SimpleMainWindow> window_ = nullptr;
     std::shared_ptr<CourseSide::Logic> game_logic_ = nullptr;
+
+    int gaming_time_ = 0;
 };
 
 }
