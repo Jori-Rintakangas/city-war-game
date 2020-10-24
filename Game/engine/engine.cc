@@ -1,6 +1,9 @@
 #include "engine.hh"
 #include <creategame.hh>
 
+namespace StudentSide
+{
+
 Engine::Engine() :
     window_(new CourseSide::SimpleMainWindow),
     game_logic_(new CourseSide::Logic)
@@ -11,4 +14,6 @@ Engine::Engine() :
 void Engine::start()
 {
     window_->show();
+}
+
 }

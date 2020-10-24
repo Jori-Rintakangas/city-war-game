@@ -7,6 +7,9 @@
 #include "graphics/simpleactoritem.hh"
 #include "core/logic.hh"
 
+namespace StudentSide
+{
+
 class Engine : public QObject
 {
     Q_OBJECT
@@ -21,4 +24,5 @@ private:
     std::shared_ptr<CourseSide::Logic> game_logic_ = nullptr;
 };
 
+}
 #endif // ENGINE_HH

@@ -6,9 +6,15 @@ QT += core gui widgets network multimedia
 CONFIG += c++14
 
 SOURCES += \
+    busstopitem.cc \
+    city.cc \
     creategame.cc \
     engine/engine.cc \
-    main.cc
+    gamecharacter.cc \
+    gamewindow.cc \
+    main.cc \
+    startdialog.cc \
+    statistics.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -35,4 +41,14 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
-    engine/engine.hh
+    busstopitem.hh \
+    city.hh \
+    engine/engine.hh \
+    gamecharacter.hh \
+    gamewindow.hh \
+    startdialog.hh \
+    statistics.hh
+
+FORMS += \
+    gamewindow.ui \
+    startdialog.ui
