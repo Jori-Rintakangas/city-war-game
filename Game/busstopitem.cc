@@ -1,6 +1,6 @@
 #include "busstopitem.hh"
 
-namespace Studentside
+namespace StudentSide
 {
 
 

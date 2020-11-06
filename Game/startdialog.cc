@@ -1,7 +1,7 @@
 #include "startdialog.hh"
 #include "ui_startdialog.h"
 
-namespace Studentside
+namespace StudentSide
 {
 
 StartDialog::StartDialog(QWidget *parent) :

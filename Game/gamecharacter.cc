@@ -1,6 +1,6 @@
 #include "gamecharacter.hh"
 
-namespace Studentside
+namespace StudentSide
 {
 
 GameCharacter::GameCharacter()

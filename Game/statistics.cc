@@ -1,6 +1,6 @@
 #include "statistics.hh"
 
-namespace Studentside
+namespace StudentSide
 {
 
 Statistics::Statistics()

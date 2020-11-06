@@ -2,7 +2,7 @@
 #define GAMECHARACTER_HH
 
 
-namespace Studentside
+namespace StudentSide
 {
 
 class GameCharacter

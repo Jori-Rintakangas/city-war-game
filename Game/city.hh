@@ -1,9 +1,10 @@
 #ifndef CITY_HH
 #define CITY_HH
 #include "interfaces/icity.hh"
+#include "graphics/simplemainwindow.hh"
 #include <QTime>
 
-namespace Studentside
+namespace StudentSide
 {
 
 class City : public Interface::ICity
@@ -11,21 +12,24 @@ class City : public Interface::ICity
 public:
     City();
 
-    void setBackground(QImage& basicbackground, QImage& bigbackground) = 0;
-    void setClock(QTime clock) = 0;
-    void addStop(std::shared_ptr<Interface::IStop> stop) = 0;
-    void startGame() = 0;
-    void addActor(std::shared_ptr<Interface::IActor> newactor) = 0;
-    void removeActor(std::shared_ptr<Interface::IActor> actor) = 0;
-    void actorRemoved(std::shared_ptr<Interface::IActor> actor) = 0;
-    bool findActor(std::shared_ptr<Interface::IActor> actor) const = 0;
-    void actorMoved(std::shared_ptr<Interface::IActor> actor) = 0;
-    std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const = 0;
-    bool isGameOver() const = 0;
+    void setBackground(QImage& basicbackground, QImage& bigbackground);
+    void setClock(QTime clock);
+    void addStop(std::shared_ptr<Interface::IStop> stop);
+    void startGame();
+    void addActor(std::shared_ptr<Interface::IActor> newactor);
+    void removeActor(std::shared_ptr<Interface::IActor> actor);
+    void actorRemoved(std::shared_ptr<Interface::IActor> actor);
+    bool findActor(std::shared_ptr<Interface::IActor> actor) const;
+    void actorMoved(std::shared_ptr<Interface::IActor> actor);
+    std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const;
+    bool isGameOver() const;
 
+    void getGameWindow(std::shared_ptr<CourseSide::SimpleMainWindow> window);
 
+    virtual ~City();
 private:
     QTime clock_;
+    std::shared_ptr<CourseSide::SimpleMainWindow> window_ = nullptr;
 };
 
 }

@@ -1,7 +1,7 @@
 #ifndef STATISTICS_HH
 #define STATISTICS_HH
 
-namespace Studentside
+namespace StudentSide
 {
 
 class Statistics

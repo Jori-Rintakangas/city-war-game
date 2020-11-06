@@ -2,7 +2,7 @@
 #define BUSSTOPITEM_HH
 
 
-namespace Studentside
+namespace StudentSide
 {
 
 class BusStopItem

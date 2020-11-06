@@ -7,7 +7,7 @@ namespace Ui {
 class StartDialog;
 }
 
-namespace Studentside
+namespace StudentSide
 {
 
 
