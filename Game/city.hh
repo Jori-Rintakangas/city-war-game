@@ -24,12 +24,18 @@ public:
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const;
     bool isGameOver() const;
 
-    void getGameWindow(std::shared_ptr<CourseSide::SimpleMainWindow> window);
+    void getGameWindow(std::shared_ptr<CourseSide::SimpleMainWindow> window, bool basic);
 
     virtual ~City();
+
 private:
+
     QTime clock_;
     std::shared_ptr<CourseSide::SimpleMainWindow> window_ = nullptr;
+    bool basic_backround_ = true;
+
+    std::vector<std::shared_ptr<Interface::IStop>> bus_stops_;
+    std::vector<std::shared_ptr<Interface::IActor>> actors_;
 };
 
 }

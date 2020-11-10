@@ -8,7 +8,8 @@
 #include "core/logic.hh"
 #include "city.hh"
 
-const QString BACKROUND = ":/offlinedata/offlinedata/kartta_pieni_500x500.png";
+const QString BACKROUND_SMALL = ":/offlinedata/offlinedata/kartta_pieni_500x500.png";
+const QString BACKROUND_BIG = ":/offlinedata/offlinedata/kartta_iso_1095x592.png";
 
 namespace StudentSide
 {
@@ -28,6 +29,8 @@ private:
     std::shared_ptr<StudentSide::City> city_ = nullptr;
 
     int gaming_time_ = 0;
+    QImage basic_ = QImage(BACKROUND_SMALL);
+    QImage big_ = QImage(BACKROUND_BIG);
 };
 
 }

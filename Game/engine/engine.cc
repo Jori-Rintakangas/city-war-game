@@ -14,7 +14,8 @@ Engine::Engine() :
 
 void Engine::start()
 {
-    city_->getGameWindow(window_);
+    city_->getGameWindow(window_, true);
+    city_->setBackground(basic_, big_);
     window_->show();
 }
 
