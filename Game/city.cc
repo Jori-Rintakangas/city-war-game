@@ -20,7 +20,9 @@ void City::setBackground(QImage &basicbackground, QImage &bigbackground)
         window_->setPicture(basicbackground);
     }
     else
+    {
         window_->setPicture(bigbackground);
+    }
 }
 
 void City::setClock(QTime clock)
@@ -60,7 +62,11 @@ void City::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 
 bool City::findActor(std::shared_ptr<Interface::IActor> actor) const
 {
-
+    if ( std::find(actors_.begin(), actors_.end(), actor) != actors_.end() )
+    {
+        return true;
+    }
+    return false;
 }
 
 void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
