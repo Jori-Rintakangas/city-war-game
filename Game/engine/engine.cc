@@ -17,6 +17,11 @@ void Engine::start()
     city_->getGameWindow(window_, true);
     city_->setBackground(basic_, big_);
     window_->show();
+
+    game_logic_->takeCity(city_);
+    game_logic_->fileConfig();
+    game_logic_->finalizeGameStart();
+
 }
 
 }
