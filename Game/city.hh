@@ -1,7 +1,7 @@
 #ifndef CITY_HH
 #define CITY_HH
 #include "interfaces/icity.hh"
-#include "graphics/simplemainwindow.hh"
+#include "gamewindow.hh"
 #include <QTime>
 
 namespace StudentSide
@@ -24,14 +24,14 @@ public:
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const;
     bool isGameOver() const;
 
-    void getGameWindow(std::shared_ptr<CourseSide::SimpleMainWindow> window, bool basic);
+    void getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool basic);
 
     virtual ~City();
 
 private:
 
     QTime clock_;
-    std::shared_ptr<CourseSide::SimpleMainWindow> window_ = nullptr;
+    std::shared_ptr<StudentSide::GameWindow> window_ = nullptr;
     bool basic_backround_ = true;
 
     std::vector<std::shared_ptr<Interface::IStop>> bus_stops_;

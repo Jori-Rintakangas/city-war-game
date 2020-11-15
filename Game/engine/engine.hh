@@ -3,8 +3,8 @@
 #include <QObject>
 #include <memory>
 #include "interfaces/icity.hh"
-#include "graphics/simplemainwindow.hh"
 #include "graphics/simpleactoritem.hh"
+#include "gamewindow.hh"
 #include "core/logic.hh"
 #include "city.hh"
 
@@ -24,7 +24,7 @@ public:
 
 private:
 
-    std::shared_ptr<CourseSide::SimpleMainWindow> window_ = nullptr;
+    std::shared_ptr<StudentSide::GameWindow> window_ = nullptr;
     std::shared_ptr<CourseSide::Logic> game_logic_ = nullptr;
     std::shared_ptr<StudentSide::City> city_ = nullptr;
 

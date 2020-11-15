@@ -5,7 +5,7 @@ namespace StudentSide
 {
 
 Engine::Engine() :
-    window_(new CourseSide::SimpleMainWindow),
+    window_(new StudentSide::GameWindow),
     game_logic_(new CourseSide::Logic),
     city_(new StudentSide::City)
 {
@@ -14,7 +14,7 @@ Engine::Engine() :
 
 void Engine::start()
 {
-    city_->getGameWindow(window_, true);
+    city_->getGameWindow(window_, false);
     city_->setBackground(basic_, big_);
     window_->show();
 

@@ -34,7 +34,7 @@ void City::addStop(std::shared_ptr<Interface::IStop> stop)
 {
     bus_stops_.push_back(stop);
     Interface::Location stop_location = stop->getLocation();
-    window_->addActor(stop_location.giveX(), 500-stop_location.giveY());
+    window_->addActor(349 + stop_location.giveX(), 553 - stop_location.giveY());
 }
 
 void City::startGame()
@@ -46,7 +46,7 @@ void City::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
     actors_.push_back(newactor);
     Interface::Location actor_location = newactor->giveLocation();
-    window_->addActor(actor_location.giveX(), 500-actor_location.giveY());
+    window_->addActor(349 + actor_location.giveX(), 553 - actor_location.giveY());
 }
 
 void City::removeActor(std::shared_ptr<Interface::IActor> actor)
@@ -88,7 +88,7 @@ bool City::isGameOver() const
     return false;
 }
 
-void City::getGameWindow(std::shared_ptr<CourseSide::SimpleMainWindow> window, bool basic)
+void City::getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool basic)
 {
     window_ = window;
     basic_backround_ = basic;
