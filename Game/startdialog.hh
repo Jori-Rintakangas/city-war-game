@@ -3,13 +3,13 @@
 
 #include <QDialog>
 
-namespace Ui {
+namespace Ui
+{
 class StartDialog;
 }
 
 namespace StudentSide
 {
-
 
 class StartDialog : public QDialog
 {
@@ -19,9 +19,16 @@ public:
     explicit StartDialog(QWidget *parent = nullptr);
     ~StartDialog();
 
+private slots:
+
+    void accept() override;
+
+    void on_game_time_valueChanged(int arg1);
+
 private:
     Ui::StartDialog *ui;
+    int game_time;
 };
 
-}
+} //namespace
 #endif // STARTDIALOG_HH

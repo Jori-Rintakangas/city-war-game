@@ -1,8 +1,13 @@
 #include "gamewindow.hh"
 #include "ui_gamewindow.h"
+#include "startdialog.hh"
+#include "ui_startdialog.h"
+
 #include <QDebug>
 
 const int PADDING = 10;
+const QString StudentSide::GameWindow::S_START = QString("Start");
+const QString StudentSide::GameWindow::S_STOP = QString("Stop");
 
 namespace StudentSide
 {
@@ -16,6 +21,9 @@ GameWindow::GameWindow(QWidget *parent) :
     ui->centralwidget->setFixedSize(width_ + ui->startButton->width() + PADDING, height_ + PADDING);
 
     ui->startButton->move(width_ + PADDING , PADDING);
+    connect(ui->startButton, &QPushButton::clicked,
+                this, &GameWindow::startOrStop);
+
 
     map = new QGraphicsScene(this);
     ui->gameView->setScene(map);
@@ -27,6 +35,10 @@ GameWindow::GameWindow(QWidget *parent) :
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
     timer->start(tick_);
+
+    StartDialog* dialog = new StartDialog;
+    dialog->exec();
+
 }
 
 GameWindow::~GameWindow()
@@ -63,7 +75,31 @@ void GameWindow::setPicture(QImage &img)
     map->setBackgroundBrush(img);
 }
 
+void GameWindow::startOrStop()
+{
+    if(ui->startButton->text() == GameWindow::S_START)
+    {
+        timer->start();
+        ui->startButton->setText(GameWindow::S_STOP);
+    }
+    else
+    {
+        timer->stop();
+        ui->startButton->setText(GameWindow::S_START);
+    }
 }
+
+void GameWindow::moveActor(std::shared_ptr<Interface::IActor> actor, int locX, int locY, int type)
+{
+
+}
+
+void GameWindow::deleteActor(std::shared_ptr<Interface::IActor> actor)
+{
+
+}
+
+} //namespace
 
 void StudentSide::GameWindow::on_startButton_clicked()
 {
