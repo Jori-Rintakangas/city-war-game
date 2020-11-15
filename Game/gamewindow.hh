@@ -2,7 +2,8 @@
 #define GAMEWINDOW_HH
 
 #include "interfaces/iactor.hh"
-#include "graphics/simpleactoritem.hh"
+#include "actoritem.hh"
+
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QTimer>
@@ -11,7 +12,8 @@
 #include <QVector>
 #include <map>
 
-namespace Ui {
+namespace Ui
+{
 class GameWindow;
 }
 
@@ -44,7 +46,7 @@ private:
     QGraphicsScene *map;
     QTimer *timer;
     QVector<QGraphicsItem*> actors_;
-    CourseSide::SimpleActorItem* last_;
+    ActorItem* last_;
 
     int width_ = 1095; //pxls
     int height_ = 592;

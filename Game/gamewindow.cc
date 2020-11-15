@@ -47,7 +47,7 @@ void GameWindow::setTick(int t)
 
 void GameWindow::addActor(int locX, int locY, int type)
 {
-    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY, type);
+    ActorItem* nActor = new ActorItem(locX, locY, type);
     actors_.push_back(nActor);
     map->addItem(nActor);
     last_ = nActor;
