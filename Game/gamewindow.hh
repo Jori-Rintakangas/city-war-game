@@ -33,12 +33,12 @@ public:
     void setSize(int w, int h);
     void setTick(int t);
 
-    virtual void addActor(int locX, int locY, int type = 0);
+    virtual ActorItem* addActor(int locX, int locY, int type = 0);
     void updateCoords(int nX, int nY);
     void setPicture(QImage &img);
     void startOrStop();
-    void moveActor(std::shared_ptr<Interface::IActor> actor, int locX, int locY, int type = 0);
-    void deleteActor(std::shared_ptr<Interface::IActor> actor);
+    void moveActor(ActorItem* item, int locX, int locY, int type = 0);
+    void deleteActor(ActorItem* item);
 
 signals:
     void gameStarted();
@@ -56,9 +56,6 @@ private:
     int width_ = 1095; //pxls
     int height_ = 592;
     int tick_ = 500; //ms
-
-    QPushButton* button_exit_;
-    QPushButton* button_control_;
 
     static const QString S_START;
     static const QString S_STOP;

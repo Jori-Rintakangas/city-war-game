@@ -57,12 +57,13 @@ void GameWindow::setTick(int t)
     tick_ = t;
 }
 
-void GameWindow::addActor(int locX, int locY, int type)
+ActorItem* GameWindow::addActor(int locX, int locY, int type)
 {
     ActorItem* nActor = new ActorItem(locX, locY, type);
     actors_.push_back(nActor);
     map->addItem(nActor);
     last_ = nActor;
+    return nActor;
 }
 
 void GameWindow::updateCoords(int nX, int nY)
@@ -89,14 +90,14 @@ void GameWindow::startOrStop()
     }
 }
 
-void GameWindow::moveActor(std::shared_ptr<Interface::IActor> actor, int locX, int locY, int type)
+void GameWindow::moveActor(ActorItem* item, int locX, int locY, int type)
 {
-
+    item->setCoord(locX, locY);
 }
 
-void GameWindow::deleteActor(std::shared_ptr<Interface::IActor> actor)
+void GameWindow::deleteActor(ActorItem* item)
 {
-
+    map->removeItem(item);
 }
 
 } //namespace
