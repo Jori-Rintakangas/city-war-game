@@ -34,7 +34,7 @@ void City::addStop(std::shared_ptr<Interface::IStop> stop)
 {
     bus_stops_.push_back(stop);
     Interface::Location stop_location = stop->getLocation();
-    ActorItem* item = window_->addActor(349 + stop_location.giveX(), 553 - stop_location.giveY());
+    ActorItem* item = window_->addActor(349 + stop_location.giveX(), 553 - stop_location.giveY(), BUS_STOP);
 }
 
 void City::startGame()
@@ -45,8 +45,12 @@ void City::startGame()
 void City::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
     actors_.push_back(newactor);
+    ActorItem* actor_item = nullptr;
     Interface::Location actor_location = newactor->giveLocation();
-    ActorItem* actor_item = window_->addActor(349 + actor_location.giveX(), 553 - actor_location.giveY());
+    if ( std::dynamic_pointer_cast<Interface::IVehicle>(newactor) != nullptr )
+    {
+        actor_item = window_->addActor(349 + actor_location.giveX(), 553 - actor_location.giveY(), BUS);
+    }
     game_actors_.insert({newactor, actor_item});
 }
 

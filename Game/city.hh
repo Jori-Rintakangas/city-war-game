@@ -4,6 +4,11 @@
 #include "gamewindow.hh"
 #include <QTime>
 
+
+const int BUS_STOP = 1;
+const int BUS = 2;
+const int CHARACTER = 3;
+
 namespace StudentSide
 {
 

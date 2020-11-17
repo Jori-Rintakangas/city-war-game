@@ -92,7 +92,10 @@ void GameWindow::startOrStop()
 
 void GameWindow::moveActor(ActorItem* item, int locX, int locY, int type)
 {
-    item->setCoord(locX, locY);
+    if ( item != nullptr)
+    {
+        item->setCoord(locX, locY);
+    }
 }
 
 void GameWindow::deleteActor(ActorItem* item)
