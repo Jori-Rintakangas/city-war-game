@@ -19,11 +19,32 @@ QRectF ActorItem::boundingRect() const
 
 void ActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    QRectF bounds = boundingRect();
-    QColor color(type_%256, type_%256, type_%256);
-    QBrush brush(color);
-    painter->setBrush(brush);
-    painter->drawEllipse(bounds);
+    if (type_ == 1) // Bus stop drawing
+    {
+        painter->setBrush(Qt::black);
+        painter->drawRect(0, 0, 2, 16);
+        painter->setBrush(Qt::blue);
+        static const QPointF points[3] =
+        {
+            QPointF(2, 0),
+            QPointF(14, 4),
+            QPointF(2, 8)
+        };
+        painter->drawPolygon(points, 3);
+    }
+
+    if (type_ == 2) // Bus drawing
+    {
+        painter->setPen(Qt::black);
+        painter->setBrush(Qt::yellow);
+        painter->drawRect(0, 0, 16, 8);
+        painter->setBrush(Qt::white);
+        painter->drawRect(2,1, 5, 5);
+        painter->drawRect(9,1, 5, 5);
+        painter->setBrush(Qt::black);
+        painter->drawEllipse(2, 6, 4, 4);
+        painter->drawEllipse(9, 6, 4, 4);
+    }
 }
 
 void ActorItem::setCoord(int x, int y)
