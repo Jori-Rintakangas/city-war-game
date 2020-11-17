@@ -36,6 +36,7 @@ private:
 
     std::vector<std::shared_ptr<Interface::IStop>> bus_stops_;
     std::vector<std::shared_ptr<Interface::IActor>> actors_;
+    std::map<std::shared_ptr<Interface::IActor>, ActorItem*> game_actors_;
 };
 
 }

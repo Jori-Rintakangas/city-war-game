@@ -46,27 +46,30 @@ void City::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
     actors_.push_back(newactor);
     Interface::Location actor_location = newactor->giveLocation();
-    ActorItem* item = window_->addActor(349 + actor_location.giveX(), 553 - actor_location.giveY());
+    ActorItem* actor_item = window_->addActor(349 + actor_location.giveX(), 553 - actor_location.giveY());
+    game_actors_.insert({newactor, actor_item});
 }
 
 void City::removeActor(std::shared_ptr<Interface::IActor> actor)
 {
-    std::vector<std::shared_ptr<Interface::IActor>>::iterator it;
-    it = std::find(actors_.begin(), actors_.end(), actor);
-    if ( it != actors_.end() )
+    std::map<std::shared_ptr<Interface::IActor>, ActorItem*>::iterator it;
+    it = game_actors_.find(actor);
+    if ( it != game_actors_.end() )
     {
-        actors_.erase(it);
+        actorRemoved(actor);
+        game_actors_.erase(actor);
     }
 }
 
 void City::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
-
+    ActorItem* actor_item = game_actors_.at(actor);
+    window_->deleteActor(actor_item);
 }
 
 bool City::findActor(std::shared_ptr<Interface::IActor> actor) const
 {
-    if ( std::find(actors_.begin(), actors_.end(), actor) != actors_.end() )
+    if ( game_actors_.count(actor) )
     {
         return true;
     }
@@ -75,7 +78,9 @@ bool City::findActor(std::shared_ptr<Interface::IActor> actor) const
 
 void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
-
+    ActorItem* item = game_actors_.at(actor);
+    Interface::Location new_location = actor->giveLocation();
+    window_->moveActor(item, 349 + new_location.giveX(), 553 - new_location.giveY());
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface::Location loc) const
