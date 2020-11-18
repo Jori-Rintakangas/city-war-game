@@ -39,6 +39,8 @@ public:
     void startOrStop();
     void moveActor(ActorItem* item, int locX, int locY, int type = 0);
     void deleteActor(ActorItem* item);
+    void displayLeftTime(int input_min);
+    void updateScore(int score = 0);
 
 signals:
     void gameStarted();
@@ -56,6 +58,11 @@ private:
     int width_ = 1095; //pxls
     int height_ = 592;
     int tick_ = 500; //ms
+    int left_min_ = 0;
+    int left_sec_ = 0;
+
+    bool is_running_ = false;
+    bool is_game_over_ = true;
 
     static const QString S_START;
     static const QString S_STOP;

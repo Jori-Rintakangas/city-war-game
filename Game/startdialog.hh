@@ -19,6 +19,9 @@ public:
     explicit StartDialog(QWidget *parent = nullptr);
     ~StartDialog();
 
+signals:
+    void signal_send(int);
+
 private slots:
 
     void accept() override;
@@ -27,7 +30,7 @@ private slots:
 
 private:
     Ui::StartDialog *ui;
-    int game_time;
+    int game_time_;
 };
 
 } //namespace

@@ -4,6 +4,7 @@
 #include "ui_startdialog.h"
 
 #include <QDebug>
+#include<QMessageBox>
 
 const int PADDING = 10;
 const QString StudentSide::GameWindow::S_START = QString("Start");
@@ -37,6 +38,7 @@ GameWindow::GameWindow(QWidget *parent) :
     timer->start(tick_);
 
     StartDialog* dialog = new StartDialog;
+    connect(dialog, &StartDialog::signal_send, this, &GameWindow::displayLeftTime);
     dialog->exec();
 
 }
@@ -80,11 +82,13 @@ void GameWindow::startOrStop()
 {
     if(ui->startButton->text() == GameWindow::S_START)
     {
+        is_running_ = true;
         timer->start();
         ui->startButton->setText(GameWindow::S_STOP);
     }
     else
     {
+        is_running_ = false;
         timer->stop();
         ui->startButton->setText(GameWindow::S_START);
     }
@@ -103,10 +107,29 @@ void GameWindow::deleteActor(ActorItem* item)
     map->removeItem(item);
 }
 
+void GameWindow::displayLeftTime(int input_min)
+{
+    left_min_ = input_min;
+    ui->left_m->display(left_min_);
+    ui->left_s->display(left_sec_);
+
+    if (left_min_ == 0 and left_sec_ == 0)
+    {
+        is_game_over_ = true;
+        QMessageBox::information(this, tr("ERROR"), tr("GAME OVER. Times up! \n See you next time."));
+    }
+}
+
+void GameWindow::updateScore(int score)
+{
+    ui->score_lcd->display(score);
+}
+
 } //namespace
 
 void StudentSide::GameWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
     emit gameStarted();
+
 }

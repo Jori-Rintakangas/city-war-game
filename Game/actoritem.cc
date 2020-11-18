@@ -37,13 +37,30 @@ void ActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     {
         painter->setPen(Qt::black);
         painter->setBrush(Qt::yellow);
-        painter->drawRect(0, 0, 16, 8);
+        painter->drawRect(0, 0, 30, 15); // bus body
         painter->setBrush(Qt::white);
-        painter->drawRect(2,1, 5, 5);
-        painter->drawRect(9,1, 5, 5);
+        painter->drawRect(2, 3, 5, 5); // left window
+        painter->drawRect(9, 3, 5, 5); // left window
         painter->setBrush(Qt::black);
-        painter->drawEllipse(2, 6, 4, 4);
-        painter->drawEllipse(9, 6, 4, 4);
+        painter->drawEllipse(4, 13, 8, 8); // left wheel
+        painter->drawEllipse(17, 13, 8, 8); // right wheel
+        painter->setPen(Qt::black);
+        QString str_passenger_num = QString::number(passenger_num_);
+        painter->drawText(15, 13, str_passenger_num); // display passenger_num_
+    }
+
+    if (type_ == 3) // Tower drawing
+    {
+        painter->setPen(Qt::black);
+        painter->setBrush(Qt::white);
+        painter->drawRect(0, 0, 10, 30); // tower body
+
+    }
+
+    if (type_ == 4) // Shooting target drawing
+    {
+        painter->setBrush(Qt::black);
+        painter->drawRect(0, 0, 10, 1); // north line
     }
 }
 
