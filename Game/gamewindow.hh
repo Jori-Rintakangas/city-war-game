@@ -34,19 +34,21 @@ public:
     void setTick(int t);
 
     virtual ActorItem* addActor(int locX, int locY, int type = 0);
+    void moveActor(ActorItem* item, int locX, int locY, int type = 0);
+    void deleteActor(ActorItem* item);
     void updateCoords(int nX, int nY);
     void setPicture(QImage &img);
     void startOrStop();
-    void moveActor(ActorItem* item, int locX, int locY, int type = 0);
-    void deleteActor(ActorItem* item);
-    void displayLeftTime(int input_min);
-    void updateScore(int score = 0);
+    void readInputTime(int input_min);
+    void gameOver();
+    void updateScore(int score = 0);  
 
 signals:
     void gameStarted();
 
 private slots:
     void on_startButton_clicked();
+    void displayLeftTime();
 
 private:
     Ui::GameWindow *ui;
@@ -58,6 +60,8 @@ private:
     int width_ = 1095; //pxls
     int height_ = 592;
     int tick_ = 500; //ms
+    int total_time_ = 0; //s
+    int spent_time_ = 0; //s
     int left_min_ = 0;
     int left_sec_ = 0;
 

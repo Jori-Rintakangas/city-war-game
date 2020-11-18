@@ -5,6 +5,7 @@
 
 #include <QDebug>
 #include<QMessageBox>
+#include<QTime>
 
 const int PADDING = 10;
 const QString StudentSide::GameWindow::S_START = QString("Start");
@@ -25,7 +26,6 @@ GameWindow::GameWindow(QWidget *parent) :
     connect(ui->startButton, &QPushButton::clicked,
                 this, &GameWindow::startOrStop);
 
-
     map = new QGraphicsScene(this);
     ui->gameView->setScene(map);
     map->setSceneRect(0,0,width_,height_);
@@ -34,13 +34,14 @@ GameWindow::GameWindow(QWidget *parent) :
     //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
 
     timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
-    timer->start(tick_);
+    connect(timer, SIGNAL(timeout()), this, SLOT(displayLeftTime()));
 
     StartDialog* dialog = new StartDialog;
-    connect(dialog, &StartDialog::signal_send, this, &GameWindow::displayLeftTime);
+    connect(dialog, &StartDialog::signal_send, this, &GameWindow::readInputTime);
     dialog->exec();
 
+    ui->score->setText(QString::number(0));
+    ui->score->setReadOnly(true);
 }
 
 GameWindow::~GameWindow()
@@ -68,6 +69,19 @@ ActorItem* GameWindow::addActor(int locX, int locY, int type)
     return nActor;
 }
 
+void GameWindow::moveActor(ActorItem* item, int locX, int locY, int type)
+{
+    if ( item != nullptr)
+    {
+        item->setCoord(locX, locY);
+    }
+}
+
+void GameWindow::deleteActor(ActorItem* item)
+{
+    map->removeItem(item);
+}
+
 void GameWindow::updateCoords(int nX, int nY)
 {
     last_->setCoord(nX, nY);
@@ -82,47 +96,53 @@ void GameWindow::startOrStop()
 {
     if(ui->startButton->text() == GameWindow::S_START)
     {
+        timer->start(1000);
         is_running_ = true;
-        timer->start();
         ui->startButton->setText(GameWindow::S_STOP);
     }
     else
     {
-        is_running_ = false;
         timer->stop();
+        is_running_ = false;
         ui->startButton->setText(GameWindow::S_START);
     }
 }
 
-void GameWindow::moveActor(ActorItem* item, int locX, int locY, int type)
+void GameWindow::readInputTime(int input_min)
 {
-    if ( item != nullptr)
-    {
-        item->setCoord(locX, locY);
-    }
+    ui->left_m->display(input_min);
+    total_time_ = input_min * 60; //s
 }
 
-void GameWindow::deleteActor(ActorItem* item)
+void GameWindow::displayLeftTime()
 {
-    map->removeItem(item);
-}
-
-void GameWindow::displayLeftTime(int input_min)
-{
-    left_min_ = input_min;
+    ++spent_time_;
+    int left_time = total_time_ - spent_time_;
+    left_min_ =  left_time / 60;
+    left_sec_ =  left_time % 60;
     ui->left_m->display(left_min_);
     ui->left_s->display(left_sec_);
 
     if (left_min_ == 0 and left_sec_ == 0)
     {
-        is_game_over_ = true;
-        QMessageBox::information(this, tr("ERROR"), tr("GAME OVER. Times up! \n See you next time."));
+        gameOver();
     }
+}
+
+void GameWindow::gameOver()
+{
+    timer->stop();
+    is_game_over_ = true;
+    is_running_ = false;
+    QMessageBox::information(this, tr("ERROR"), tr("GAME OVER. Times up! \n See you next time."));
+    ui->startButton->setEnabled(false);
+    total_time_ = 0; //ms
+    spent_time_ = 0; //ms
 }
 
 void GameWindow::updateScore(int score)
 {
-    ui->score_lcd->display(score);
+    ui->score->setText(QString::number(score));
 }
 
 } //namespace
@@ -131,5 +151,4 @@ void StudentSide::GameWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
     emit gameStarted();
-
 }
