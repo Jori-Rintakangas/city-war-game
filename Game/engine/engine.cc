@@ -16,10 +16,14 @@ Engine::Engine() :
 void Engine::start()
 {
     game_character_->createCharacter();
+
     city_->getGameWindow(window_, false);
     city_->setBackground(basic_, big_);
-    window_->show();
     city_->addActor(game_character_);
+
+    window_->show();
+    window_->getGameCharacterInfo(game_character_);
+
     game_logic_->takeCity(city_);
     game_logic_->fileConfig();
     game_logic_->finalizeGameStart();

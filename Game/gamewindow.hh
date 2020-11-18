@@ -3,6 +3,7 @@
 
 #include "interfaces/iactor.hh"
 #include "actoritem.hh"
+#include "gamecharacter.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -13,6 +14,8 @@
 #include <map>
 #include <QPushButton>
 #include <QString>
+
+const qreal STEP = 5;
 
 namespace Ui
 {
@@ -36,12 +39,13 @@ public:
     virtual ActorItem* addActor(int locX, int locY, int type = 0);
     void moveActor(ActorItem* item, int locX, int locY, int type = 0);
     void deleteActor(ActorItem* item);
-    void updateCoords(int nX, int nY);
     void setPicture(QImage &img);
     void startOrStop();
     void readInputTime(int input_min);
     void gameOver();
-    void updateScore(int score = 0);  
+    void updateScore(int score = 0);
+    void keyPressEvent(QKeyEvent* event) override;
+    void getGameCharacterInfo(std::shared_ptr<StudentSide::GameCharacter> character);
 
 signals:
     void gameStarted();
@@ -55,7 +59,8 @@ private:
     QGraphicsScene *map;
     QTimer *timer;
     QVector<QGraphicsItem*> actors_;
-    ActorItem* last_;
+    ActorItem* target_;
+    std::shared_ptr<StudentSide::GameCharacter> character_;
 
     int width_ = 1095; //pxls
     int height_ = 592;

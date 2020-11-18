@@ -4,8 +4,9 @@
 #include "ui_startdialog.h"
 
 #include <QDebug>
-#include<QMessageBox>
-#include<QTime>
+#include <QMessageBox>
+#include <QTime>
+#include <QKeyEvent>
 
 const int PADDING = 10;
 const QString StudentSide::GameWindow::S_START = QString("Start");
@@ -63,9 +64,12 @@ void GameWindow::setTick(int t)
 ActorItem* GameWindow::addActor(int locX, int locY, int type)
 {
     ActorItem* nActor = new ActorItem(locX, locY, type);
+    if ( type == 4 ) // if target character
+    {
+        target_ = nActor;
+    }
     actors_.push_back(nActor);
     map->addItem(nActor);
-    last_ = nActor;
     return nActor;
 }
 
@@ -80,11 +84,6 @@ void GameWindow::moveActor(ActorItem* item, int locX, int locY, int type)
 void GameWindow::deleteActor(ActorItem* item)
 {
     map->removeItem(item);
-}
-
-void GameWindow::updateCoords(int nX, int nY)
-{
-    last_->setCoord(nX, nY);
 }
 
 void GameWindow::setPicture(QImage &img)
@@ -143,6 +142,31 @@ void GameWindow::gameOver()
 void GameWindow::updateScore(int score)
 {
     ui->score->setText(QString::number(score));
+}
+
+void GameWindow::keyPressEvent(QKeyEvent *event)
+{
+    if ( event->key() == Qt::Key_D )
+    {
+        target_->moveBy(STEP,0);
+    }
+    if ( event->key() == Qt::Key_A )
+    {
+         target_->moveBy(-STEP,0);
+    }
+    if ( event->key() == Qt::Key_W )
+    {
+         target_->moveBy(0,-STEP);
+    }
+    if ( event->key() == Qt::Key_S )
+    {
+         target_->moveBy(0,STEP);
+    }
+}
+
+void GameWindow::getGameCharacterInfo(std::shared_ptr<StudentSide::GameCharacter> character)
+{
+    character_ = character;
 }
 
 } //namespace
