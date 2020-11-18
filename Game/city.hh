@@ -3,11 +3,13 @@
 #include "interfaces/icity.hh"
 #include "gamewindow.hh"
 #include <QTime>
+#include "gamecharacter.hh"
 
 
 const int BUS_STOP = 1;
 const int BUS = 2;
-const int CHARACTER = 3;
+const int TOWER = 3;
+const int TARGET = 4;
 
 namespace StudentSide
 {

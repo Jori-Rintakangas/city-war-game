@@ -51,6 +51,10 @@ void City::addActor(std::shared_ptr<Interface::IActor> newactor)
     {
         actor_item = window_->addActor(349 + actor_location.giveX(), 553 - actor_location.giveY(), BUS);
     }
+    else if ( std::dynamic_pointer_cast<StudentSide::GameCharacter>(newactor) != nullptr)
+    {
+        actor_item = window_->addActor(349 + actor_location.giveX(), 553 - actor_location.giveY(), TARGET);
+    }
     game_actors_.insert({newactor, actor_item});
 }
 
