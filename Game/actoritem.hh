@@ -8,8 +8,8 @@
 namespace StudentSide
 {
 
-const int WIDTH = 60;
-const int HEIGHT = 60;
+const int WIDTH = 200;
+const int HEIGHT = 200;
 
 class ActorItem : public QGraphicsItem
 {
