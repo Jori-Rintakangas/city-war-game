@@ -43,6 +43,11 @@ GameWindow::GameWindow(QWidget *parent) :
 
     ui->score->setText(QString::number(0));
     ui->score->setReadOnly(true);
+
+    if (total_time_ == 0)
+    {
+        ui->startButton->setEnabled(false);
+    }
 }
 
 GameWindow::~GameWindow()
@@ -133,8 +138,8 @@ void GameWindow::gameOver()
     timer->stop();
     is_game_over_ = true;
     is_running_ = false;
-    QMessageBox::information(this, tr("ERROR"), tr("GAME OVER. Times up! \n See you next time."));
-    ui->startButton->setEnabled(false);
+    QMessageBox::information(this, tr("ERROR"), tr("GAME OVER. Times up! \n Your score is "));
+    this->close();
     total_time_ = 0; //ms
     spent_time_ = 0; //ms
 }
