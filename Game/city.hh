@@ -11,9 +11,12 @@ const int BUS = 2;
 const int TOWER = 3;
 const int TARGET = 4;
 
+const int Y_SCALE = 553;
+const int X_SCALE = 349;
+
 namespace StudentSide
 {
-
+class GameWindow;
 class City : public Interface::ICity
 {
 public:

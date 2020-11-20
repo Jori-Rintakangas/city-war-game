@@ -15,9 +15,12 @@ const QString StudentSide::GameWindow::S_STOP = QString("Stop");
 namespace StudentSide
 {
 
-GameWindow::GameWindow(QWidget *parent) :
+GameWindow::GameWindow(QWidget *parent, std::shared_ptr<Interface::IActor> character,
+                       std::shared_ptr<City> game_city) :
     QMainWindow(parent),
-    ui(new Ui::GameWindow)
+    ui(new Ui::GameWindow),
+    character_(character),
+    game_city_(game_city)
 {
     ui->setupUi(this);
     ui->gameView->setFixedSize(width_, height_);
@@ -176,11 +179,10 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
          loc.setXY(loc.giveX(), loc.giveY()-STEP);
          character_->move(loc);
     }
-}
-
-void GameWindow::getGameCharacterInfo(std::shared_ptr<Interface::IActor> character)
-{
-    character_ = character;
+    if ( event->key() == Qt::Key_Space )
+    {
+        std::vector<std::shared_ptr<Interface::IActor>> vec = game_city_->getNearbyActors(loc);
+    }
 }
 
 } //namespace

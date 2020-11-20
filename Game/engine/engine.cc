@@ -5,10 +5,10 @@ namespace StudentSide
 {
 
 Engine::Engine() :
-    window_(new StudentSide::GameWindow),
-    game_logic_(new CourseSide::Logic),
     city_(new StudentSide::City),
-    game_character_(new StudentSide::GameCharacter)
+    game_character_(new StudentSide::GameCharacter),
+    window_(new StudentSide::GameWindow(nullptr, game_character_, city_)),
+    game_logic_(new CourseSide::Logic)
 {
     //city_ = std::dynamic_pointer_cast<StudentSide::City>(Interface::createGame());
 }
@@ -22,7 +22,6 @@ void Engine::start()
     city_->addActor(game_character_);
 
     window_->show();
-    window_->getGameCharacterInfo(game_character_);
 
     game_logic_->takeCity(city_);
     game_logic_->fileConfig();

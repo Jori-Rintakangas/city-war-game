@@ -1,5 +1,5 @@
 #include "city.hh"
-
+#include <QDebug>
 namespace StudentSide
 {
 
@@ -34,7 +34,7 @@ void City::addStop(std::shared_ptr<Interface::IStop> stop)
 {
     bus_stops_.push_back(stop);
     Interface::Location stop_location = stop->getLocation();
-    ActorItem* item = window_->addActor(349 + stop_location.giveX(), 553 - stop_location.giveY(), BUS_STOP);
+    ActorItem* item = window_->addActor(X_SCALE + stop_location.giveX(), Y_SCALE - stop_location.giveY(), BUS_STOP);
 }
 
 void City::startGame()
@@ -49,20 +49,18 @@ void City::addActor(std::shared_ptr<Interface::IActor> newactor)
     Interface::Location actor_location = newactor->giveLocation();
     if ( std::dynamic_pointer_cast<Interface::IVehicle>(newactor) != nullptr )
     {
-        actor_item = window_->addActor(349 + actor_location.giveX(), 553 - actor_location.giveY(), BUS);
+        actor_item = window_->addActor(X_SCALE + actor_location.giveX(), Y_SCALE - actor_location.giveY(), BUS);
     }
     else if ( std::dynamic_pointer_cast<StudentSide::GameCharacter>(newactor) != nullptr)
     {
-        actor_item = window_->addActor(349 + actor_location.giveX(), 553 - actor_location.giveY(), TARGET);
+        actor_item = window_->addActor(X_SCALE + actor_location.giveX(), Y_SCALE - actor_location.giveY(), TARGET);
     }
     game_actors_.insert({newactor, actor_item});
 }
 
 void City::removeActor(std::shared_ptr<Interface::IActor> actor)
 {
-    std::map<std::shared_ptr<Interface::IActor>, ActorItem*>::iterator it;
-    it = game_actors_.find(actor);
-    if ( it != game_actors_.end() )
+    if ( game_actors_.find(actor) != game_actors_.end() )
     {
         actorRemoved(actor);
         game_actors_.erase(actor);
@@ -77,7 +75,7 @@ void City::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 
 bool City::findActor(std::shared_ptr<Interface::IActor> actor) const
 {
-    if ( game_actors_.count(actor) )
+    if ( game_actors_.find(actor) != game_actors_.end() )
     {
         return true;
     }
@@ -88,12 +86,26 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
     ActorItem* item = game_actors_.at(actor);
     Interface::Location new_location = actor->giveLocation();
-    window_->moveActor(item, 349 + new_location.giveX(), 553 - new_location.giveY());
+    window_->moveActor(item, X_SCALE + new_location.giveX(), Y_SCALE - new_location.giveY());
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface::Location loc) const
 {
-
+    std::vector<std::shared_ptr<Interface::IActor> > nearby_actors = {};
+    for ( auto& actor : game_actors_ )
+    {
+        Interface::Location location = actor.first->giveLocation();
+        if (location.isClose(loc,10) )
+        {
+            nearby_actors.push_back(actor.first);
+            qDebug() << "is close";
+        }
+        else
+        {
+            qDebug() << "not close";
+        }
+    }
+    return nearby_actors;
 }
 
 bool City::isGameOver() const
