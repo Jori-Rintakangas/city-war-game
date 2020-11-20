@@ -3,7 +3,7 @@
 
 #include "interfaces/iactor.hh"
 #include "actoritem.hh"
-#include "gamecharacter.hh"
+#include"gamecharacter.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>

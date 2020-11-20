@@ -24,13 +24,12 @@ signals:
 
 private slots:
 
-    void accept() override;
-
     void on_game_time_valueChanged(int arg1);
+    void accept() override;
 
 private:
     Ui::StartDialog *ui;
-    int game_time_;
+    int game_time_ = 1;
 };
 
 } //namespace

@@ -11,6 +11,7 @@ StartDialog::StartDialog(QWidget *parent) :
     ui(new Ui::StartDialog)
 {
     ui->setupUi(this);
+    ui->game_time->setValue(1);
 }
 
 StartDialog::~StartDialog()
@@ -25,17 +26,8 @@ void StartDialog::on_game_time_valueChanged(int input_min)
 
 void StartDialog::accept()
 {
-    if (game_time_ != 0)
-    {
-        emit signal_send(game_time_);
-        QDialog::accept();
-    }
-    else
-    {
-        QMessageBox::information(this, tr("ERROR"), tr("Invalid number of game time.\n Pick number more than 0."));
-    }
+    emit signal_send(game_time_);
+    QDialog::accept();
 }
 
-}
-
-
+} //namespace
