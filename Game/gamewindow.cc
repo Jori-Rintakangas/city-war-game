@@ -146,25 +146,34 @@ void GameWindow::updateScore(int score)
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
+    Interface::Location loc = character_->giveLocation();
     if ( event->key() == Qt::Key_D )
     {
         target_->moveBy(STEP,0);
+        loc.setXY(loc.giveX()+STEP, loc.giveY());
+        character_->move(loc);
     }
     if ( event->key() == Qt::Key_A )
     {
          target_->moveBy(-STEP,0);
+         loc.setXY(loc.giveX()-STEP, loc.giveY());
+         character_->move(loc);
     }
     if ( event->key() == Qt::Key_W )
     {
          target_->moveBy(0,-STEP);
+         loc.setXY(loc.giveX(), loc.giveY()+STEP);
+         character_->move(loc);
     }
     if ( event->key() == Qt::Key_S )
     {
          target_->moveBy(0,STEP);
+         loc.setXY(loc.giveX(), loc.giveY()-STEP);
+         character_->move(loc);
     }
 }
 
-void GameWindow::getGameCharacterInfo(std::shared_ptr<StudentSide::GameCharacter> character)
+void GameWindow::getGameCharacterInfo(std::shared_ptr<Interface::IActor> character)
 {
     character_ = character;
 }

@@ -20,7 +20,7 @@ Interface::Location GameCharacter::giveLocation() const
 
 void GameCharacter::move(Interface::Location loc)
 {
-
+    character_location_ = loc;
 }
 
 bool GameCharacter::isRemoved() const

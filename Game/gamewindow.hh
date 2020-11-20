@@ -45,7 +45,7 @@ public:
     void gameOver();
     void updateScore(int score = 0);
     void keyPressEvent(QKeyEvent* event) override;
-    void getGameCharacterInfo(std::shared_ptr<StudentSide::GameCharacter> character);
+    void getGameCharacterInfo(std::shared_ptr<Interface::IActor> character);
 
 signals:
     void gameStarted();
@@ -60,7 +60,7 @@ private:
     QTimer *timer;
     QVector<QGraphicsItem*> actors_;
     ActorItem* target_;
-    std::shared_ptr<StudentSide::GameCharacter> character_;
+    std::shared_ptr<Interface::IActor> character_;
 
     int width_ = 1095; //pxls
     int height_ = 592;
