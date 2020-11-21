@@ -182,6 +182,13 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
     if ( event->key() == Qt::Key_Space )
     {
         std::vector<std::shared_ptr<Interface::IActor>> vec = game_city_->getNearbyActors(loc);
+        if ( vec.size() != 0 )
+        {
+            for ( auto& bus : vec )
+            {
+                bus->remove();
+            }
+        }
     }
 }
 

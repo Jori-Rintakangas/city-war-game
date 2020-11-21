@@ -50,12 +50,20 @@ void City::addActor(std::shared_ptr<Interface::IActor> newactor)
     if ( std::dynamic_pointer_cast<Interface::IVehicle>(newactor) != nullptr )
     {
         actor_item = window_->addActor(X_SCALE + actor_location.giveX(), Y_SCALE - actor_location.giveY(), BUS);
+        actor_location.setXY(actor_location.giveX()+BUS_X, actor_location.giveY()-BUS_Y);
+        newactor->move(actor_location);
+        game_actors_.insert({newactor, actor_item});
     }
     else if ( std::dynamic_pointer_cast<StudentSide::GameCharacter>(newactor) != nullptr)
     {
         actor_item = window_->addActor(X_SCALE + actor_location.giveX(), Y_SCALE - actor_location.giveY(), TARGET);
+        actor_location.setXY(actor_location.giveX()+TARGET_SCALE, actor_location.giveY()-TARGET_SCALE);
+        newactor->move(actor_location);
     }
-    game_actors_.insert({newactor, actor_item});
+    else
+    {
+        game_actors_.insert({newactor, actor_item});
+    }
 }
 
 void City::removeActor(std::shared_ptr<Interface::IActor> actor)
@@ -94,15 +102,14 @@ std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface
     std::vector<std::shared_ptr<Interface::IActor> > nearby_actors = {};
     for ( auto& actor : game_actors_ )
     {
-        Interface::Location location = actor.first->giveLocation();
-        if (location.isClose(loc,10) )
+        if ( std::dynamic_pointer_cast<Interface::IVehicle>(actor.first) != nullptr )
         {
-            nearby_actors.push_back(actor.first);
-            qDebug() << "is close";
-        }
-        else
-        {
-            qDebug() << "not close";
+            Interface::Location location = actor.first->giveLocation();
+            if ( location.isClose(loc) )
+            {
+                nearby_actors.push_back(actor.first);
+                qDebug() << "is close";
+            }
         }
     }
     return nearby_actors;

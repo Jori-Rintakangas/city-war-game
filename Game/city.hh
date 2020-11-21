@@ -14,6 +14,11 @@ const int TARGET = 4;
 const int Y_SCALE = 553;
 const int X_SCALE = 349;
 
+const int BUS_X = 15;
+const int BUS_Y = 8;
+
+const int TARGET_SCALE = 65;
+
 namespace StudentSide
 {
 class GameWindow;
