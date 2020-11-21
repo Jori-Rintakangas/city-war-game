@@ -75,6 +75,7 @@ ActorItem* GameWindow::addActor(int locX, int locY, int type)
     if ( type == 4 ) // if target character
     {
         target_ = nActor;
+        nActor->setZValue(1); // used to keep target on top of other items
     }
     actors_.push_back(nActor);
     map->addItem(nActor);
@@ -91,7 +92,10 @@ void GameWindow::moveActor(ActorItem* item, int locX, int locY, int type)
 
 void GameWindow::deleteActor(ActorItem* item)
 {
-    map->removeItem(item);
+    if ( item != nullptr )
+    {
+        map->removeItem(item);
+    }
 }
 
 void GameWindow::setPicture(QImage &img)

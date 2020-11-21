@@ -74,7 +74,7 @@ void ActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         painter->drawEllipse(50, 50, 30, 30); // outer circle
         painter->setPen(Qt::black);
         painter->setBrush(Qt::black);
-        painter->drawEllipse(60, 60, 10, 10); // inner circle
+        painter->drawEllipse(63, 63, 5, 5); // inner circle
         painter->drawRect(63, 0, 5, 50); // north line
         painter->drawRect(0, 63, 50, 5); // east line
         painter->drawRect(80, 63, 50, 5); // west line

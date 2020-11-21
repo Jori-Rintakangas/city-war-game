@@ -50,8 +50,6 @@ void City::addActor(std::shared_ptr<Interface::IActor> newactor)
     if ( std::dynamic_pointer_cast<Interface::IVehicle>(newactor) != nullptr )
     {
         actor_item = window_->addActor(X_SCALE + actor_location.giveX(), Y_SCALE - actor_location.giveY(), BUS);
-        actor_location.setXY(actor_location.giveX()+BUS_X, actor_location.giveY()-BUS_Y);
-        newactor->move(actor_location);
         game_actors_.insert({newactor, actor_item});
     }
     else if ( std::dynamic_pointer_cast<StudentSide::GameCharacter>(newactor) != nullptr)
@@ -105,7 +103,7 @@ std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface
         if ( std::dynamic_pointer_cast<Interface::IVehicle>(actor.first) != nullptr )
         {
             Interface::Location location = actor.first->giveLocation();
-            if ( location.isClose(loc) )
+            if ( location.isClose(loc,7) )
             {
                 nearby_actors.push_back(actor.first);
                 qDebug() << "is close";
