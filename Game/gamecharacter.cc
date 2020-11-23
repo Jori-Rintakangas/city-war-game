@@ -7,6 +7,10 @@ GameCharacter::GameCharacter()
 {
 }
 
+GameCharacter::~GameCharacter()
+{
+}
+
 Interface::Location GameCharacter::createCharacter()
 {
     character_location_.setXY(default_x_, default_y_);
@@ -25,12 +29,12 @@ void GameCharacter::move(Interface::Location loc)
 
 bool GameCharacter::isRemoved() const
 {
-
+    return removed_;
 }
 
 void GameCharacter::remove()
 {
-
+    removed_ = true;
 }
 
 } //namespace
