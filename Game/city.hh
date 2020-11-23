@@ -16,6 +16,9 @@ const int CHARACTER = 4;
 const int SCALE = 65;
 const qreal STEP = 5;
 
+const qreal LIMIT_Y = 373;
+const qreal LIMIT_X = 963;
+
 namespace StudentSide
 {
 /**
@@ -87,6 +90,18 @@ public:
      * \param event A pointer that contains information of pressed key on the keyboard.
      */
     void executeUserCommand(QKeyEvent* event);
+
+    /*!
+     * \brief moveVertical moves game character in vertical direction in the gamewindow
+     * \param amount The amount of movement
+     */
+    void moveVertical(qreal amount);
+
+    /*!
+     * \brief moveHorizontal moves game character in horizontal direction in the gamewindow
+     * \param amount The amount of movement
+     */
+    void moveHorizontal(qreal amount);
 
     /*!
      * \brief City destructor

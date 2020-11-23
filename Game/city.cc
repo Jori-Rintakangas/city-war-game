@@ -129,27 +129,19 @@ void City::executeUserCommand(QKeyEvent *event)
     Interface::Location loc = character_->giveLocation();
     if ( event->key() == Qt::Key_D )
     {
-        character_item_->moveBy(STEP,0);
-        loc.setXY(loc.giveX()+STEP, loc.giveY());
-        character_->move(loc);
+        moveHorizontal(STEP);
     }
     if ( event->key() == Qt::Key_A )
     {
-         character_item_->moveBy(-STEP,0);
-         loc.setXY(loc.giveX()-STEP, loc.giveY());
-         character_->move(loc);
+        moveHorizontal(-STEP);
     }
     if ( event->key() == Qt::Key_W )
     {
-         character_item_->moveBy(0,-STEP);
-         loc.setXY(loc.giveX(), loc.giveY()+STEP);
-         character_->move(loc);
+        moveVertical(-STEP);
     }
     if ( event->key() == Qt::Key_S )
     {
-         character_item_->moveBy(0,STEP);
-         loc.setXY(loc.giveX(), loc.giveY()-STEP);
-         character_->move(loc);
+        moveVertical(STEP);
     }
     if ( event->key() == Qt::Key_Space )
     {
@@ -161,6 +153,30 @@ void City::executeUserCommand(QKeyEvent *event)
                 bus->remove();
             }
         }
+    }
+}
+
+void City::moveVertical(qreal amount)
+{
+    Interface::Location loc = character_->giveLocation();
+    qreal next_pos = character_item_->y() + amount;
+    if ( next_pos < LIMIT_Y && next_pos > 0 )
+    {
+        character_item_->moveBy(0, amount);
+        loc.setXY(loc.giveX(), loc.giveY() - amount);
+        character_->move(loc);
+    }
+}
+
+void City::moveHorizontal(qreal amount)
+{
+    Interface::Location loc = character_->giveLocation();
+    qreal next_pos = character_item_->x() + amount;
+    if ( next_pos < LIMIT_X && next_pos > 0 )
+    {
+        character_item_->moveBy(amount,0);
+        loc.setXY(loc.giveX() + amount, loc.giveY());
+        character_->move(loc);
     }
 }
 

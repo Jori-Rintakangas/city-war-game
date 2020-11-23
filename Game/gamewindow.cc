@@ -9,6 +9,7 @@
 #include <QKeyEvent>
 
 const int PADDING = 10;
+const int SIZE_SCALE = 3;
 const QString StudentSide::GameWindow::S_START = QString("Start");
 const QString StudentSide::GameWindow::S_STOP = QString("Stop");
 
@@ -21,7 +22,7 @@ GameWindow::GameWindow(QWidget *parent, std::shared_ptr<City> game_city) :
     game_city_(game_city)
 {
     ui->setupUi(this);
-    ui->gameView->setFixedSize(width_, height_);
+    ui->gameView->setFixedSize(width_+SIZE_SCALE, height_+SIZE_SCALE);
     ui->centralwidget->setFixedSize(width_ + ui->startButton->width() + PADDING, height_ + PADDING);
 
     ui->startButton->move(width_ + PADDING , PADDING);
