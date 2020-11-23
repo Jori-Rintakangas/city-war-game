@@ -7,7 +7,7 @@ namespace StudentSide
 Engine::Engine() :
     city_(new StudentSide::City),
     game_character_(new StudentSide::GameCharacter),
-    window_(new StudentSide::GameWindow(nullptr, game_character_, city_)),
+    window_(new StudentSide::GameWindow(nullptr, city_)),
     game_logic_(new CourseSide::Logic)
 {
     //city_ = std::dynamic_pointer_cast<StudentSide::City>(Interface::createGame());

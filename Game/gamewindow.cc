@@ -15,11 +15,9 @@ const QString StudentSide::GameWindow::S_STOP = QString("Stop");
 namespace StudentSide
 {
 
-GameWindow::GameWindow(QWidget *parent, std::shared_ptr<Interface::IActor> character,
-                       std::shared_ptr<City> game_city) :
+GameWindow::GameWindow(QWidget *parent, std::shared_ptr<City> game_city) :
     QMainWindow(parent),
     ui(new Ui::GameWindow),
-    character_(character),
     game_city_(game_city)
 {
     ui->setupUi(this);
@@ -74,10 +72,8 @@ ActorItem* GameWindow::addActor(int locX, int locY, int type)
     ActorItem* nActor = new ActorItem(locX, locY, type);
     if ( type == 4 ) // if target character
     {
-        target_ = nActor;
         nActor->setZValue(1); // used to keep target on top of other items
     }
-    actors_.push_back(nActor);
     map->addItem(nActor);
     return nActor;
 }
@@ -158,42 +154,7 @@ void GameWindow::updateScore(int score)
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
-    Interface::Location loc = character_->giveLocation();
-    if ( event->key() == Qt::Key_D )
-    {
-        target_->moveBy(STEP,0);
-        loc.setXY(loc.giveX()+STEP, loc.giveY());
-        character_->move(loc);
-    }
-    if ( event->key() == Qt::Key_A )
-    {
-         target_->moveBy(-STEP,0);
-         loc.setXY(loc.giveX()-STEP, loc.giveY());
-         character_->move(loc);
-    }
-    if ( event->key() == Qt::Key_W )
-    {
-         target_->moveBy(0,-STEP);
-         loc.setXY(loc.giveX(), loc.giveY()+STEP);
-         character_->move(loc);
-    }
-    if ( event->key() == Qt::Key_S )
-    {
-         target_->moveBy(0,STEP);
-         loc.setXY(loc.giveX(), loc.giveY()-STEP);
-         character_->move(loc);
-    }
-    if ( event->key() == Qt::Key_Space )
-    {
-        std::vector<std::shared_ptr<Interface::IActor>> vec = game_city_->getNearbyActors(loc);
-        if ( vec.size() != 0 )
-        {
-            for ( auto& bus : vec )
-            {
-                bus->remove();
-            }
-        }
-    }
+    game_city_->executeUserCommand(event);
 }
 
 } //namespace

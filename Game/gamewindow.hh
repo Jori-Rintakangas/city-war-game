@@ -31,8 +31,7 @@ class GameWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit GameWindow(QWidget *parent = nullptr, std::shared_ptr<Interface::IActor> character = nullptr,
-                        std::shared_ptr<StudentSide::City> game_city = nullptr);
+    explicit GameWindow(QWidget *parent = nullptr, std::shared_ptr<StudentSide::City> game_city = nullptr);
     virtual ~GameWindow();
 
     void setSize(int w, int h);
@@ -59,9 +58,6 @@ private:
     Ui::GameWindow *ui;
     QGraphicsScene *map;
     QTimer *timer;
-    QVector<QGraphicsItem*> actors_;
-    ActorItem* target_;
-    std::shared_ptr<Interface::IActor> character_;
     std::shared_ptr<StudentSide::City> game_city_;
 
     int width_ = 1095; //pxls

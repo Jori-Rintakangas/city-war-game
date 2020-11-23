@@ -54,7 +54,9 @@ void City::addActor(std::shared_ptr<Interface::IActor> newactor)
     }
     else if ( std::dynamic_pointer_cast<StudentSide::GameCharacter>(newactor) != nullptr)
     {
-        actor_item = window_->addActor(X_SCALE + actor_location.giveX(), Y_SCALE - actor_location.giveY(), TARGET);
+        actor_item = window_->addActor(X_SCALE + actor_location.giveX(), Y_SCALE - actor_location.giveY(), CHARACTER);
+        character_item_ = actor_item;
+        character_ = newactor;
         actor_location.setXY(actor_location.giveX()+TARGET_SCALE, actor_location.giveY()-TARGET_SCALE);
         newactor->move(actor_location);
     }
@@ -122,6 +124,46 @@ void City::getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool b
 {
     window_ = window;
     basic_backround_ = basic;
+}
+
+void City::executeUserCommand(QKeyEvent *event)
+{
+    Interface::Location loc = character_->giveLocation();
+    if ( event->key() == Qt::Key_D )
+    {
+        character_item_->moveBy(STEP,0);
+        loc.setXY(loc.giveX()+STEP, loc.giveY());
+        character_->move(loc);
+    }
+    if ( event->key() == Qt::Key_A )
+    {
+         character_item_->moveBy(-STEP,0);
+         loc.setXY(loc.giveX()-STEP, loc.giveY());
+         character_->move(loc);
+    }
+    if ( event->key() == Qt::Key_W )
+    {
+         character_item_->moveBy(0,-STEP);
+         loc.setXY(loc.giveX(), loc.giveY()+STEP);
+         character_->move(loc);
+    }
+    if ( event->key() == Qt::Key_S )
+    {
+         character_item_->moveBy(0,STEP);
+         loc.setXY(loc.giveX(), loc.giveY()-STEP);
+         character_->move(loc);
+    }
+    if ( event->key() == Qt::Key_Space )
+    {
+        std::vector<std::shared_ptr<Interface::IActor>> vec = getNearbyActors(loc);
+        if ( vec.size() != 0 )
+        {
+            for ( auto& bus : vec )
+            {
+                bus->remove();
+            }
+        }
+    }
 }
 
 

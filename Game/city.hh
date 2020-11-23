@@ -2,14 +2,16 @@
 #define CITY_HH
 #include "interfaces/icity.hh"
 #include "gamewindow.hh"
-#include <QTime>
 #include "gamecharacter.hh"
+
+#include <QTime>
+#include <QKeyEvent>
 
 
 const int BUS_STOP = 1;
 const int BUS = 2;
 const int TOWER = 3;
-const int TARGET = 4;
+const int CHARACTER = 4;
 
 const int Y_SCALE = 553;
 const int X_SCALE = 349;
@@ -86,6 +88,12 @@ public:
     void getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool basic);
 
     /*!
+     * \brief executeUserCommand executes the command that user wants
+     * \param event A pointer that contains information of pressed key on the keyboard.
+     */
+    void executeUserCommand(QKeyEvent* event);
+
+    /*!
      * \brief City destructor
      */
     virtual ~City();
@@ -99,6 +107,9 @@ private:
     std::vector<std::shared_ptr<Interface::IStop>> bus_stops_;
     std::vector<std::shared_ptr<Interface::IActor>> actors_;
     std::map<std::shared_ptr<Interface::IActor>, ActorItem*> game_actors_;
+
+    ActorItem* character_item_;
+    std::shared_ptr<Interface::IActor> character_;
 };
 
 }
