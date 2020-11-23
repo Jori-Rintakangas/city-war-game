@@ -1,5 +1,6 @@
 #include "city.hh"
 #include <QDebug>
+
 namespace StudentSide
 {
 
@@ -32,9 +33,8 @@ void City::setClock(QTime clock)
 
 void City::addStop(std::shared_ptr<Interface::IStop> stop)
 {
-    bus_stops_.push_back(stop);
     Interface::Location stop_location = stop->getLocation();
-    ActorItem* item = window_->addActor(X_SCALE + stop_location.giveX(), Y_SCALE - stop_location.giveY(), BUS_STOP);
+    window_->addActor(stop_location.giveX(),stop_location.giveY(), BUS_STOP);
 }
 
 void City::startGame()
@@ -42,27 +42,26 @@ void City::startGame()
 
 }
 
-void City::addActor(std::shared_ptr<Interface::IActor> newactor)
+void City::addActor(std::shared_ptr<Interface::IActor> new_actor)
 {
-    actors_.push_back(newactor);
     ActorItem* actor_item = nullptr;
-    Interface::Location actor_location = newactor->giveLocation();
-    if ( std::dynamic_pointer_cast<Interface::IVehicle>(newactor) != nullptr )
+    Interface::Location actor_location = new_actor->giveLocation();
+    if ( std::dynamic_pointer_cast<Interface::IVehicle>(new_actor) != nullptr )
     {
-        actor_item = window_->addActor(X_SCALE + actor_location.giveX(), Y_SCALE - actor_location.giveY(), BUS);
-        game_actors_.insert({newactor, actor_item});
+        actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), BUS);
+        game_actors_.insert({new_actor, actor_item});
     }
-    else if ( std::dynamic_pointer_cast<StudentSide::GameCharacter>(newactor) != nullptr)
+    else if ( std::dynamic_pointer_cast<StudentSide::GameCharacter>(new_actor) != nullptr)
     {
-        actor_item = window_->addActor(X_SCALE + actor_location.giveX(), Y_SCALE - actor_location.giveY(), CHARACTER);
+        actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), CHARACTER);
+        actor_location.setXY(actor_location.giveX() + SCALE, actor_location.giveY() - SCALE);
+        new_actor->move(actor_location);
         character_item_ = actor_item;
-        character_ = newactor;
-        actor_location.setXY(actor_location.giveX()+TARGET_SCALE, actor_location.giveY()-TARGET_SCALE);
-        newactor->move(actor_location);
+        character_ = new_actor;
     }
     else
-    {
-        game_actors_.insert({newactor, actor_item});
+    {   // passengers are not drawed to the gamewindow
+        game_actors_.insert({new_actor, actor_item});
     }
 }
 
@@ -94,7 +93,7 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
     ActorItem* item = game_actors_.at(actor);
     Interface::Location new_location = actor->giveLocation();
-    window_->moveActor(item, X_SCALE + new_location.giveX(), Y_SCALE - new_location.giveY());
+    window_->moveActor(item, new_location.giveX(), new_location.giveY());
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface::Location loc) const
@@ -108,7 +107,6 @@ std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface
             if ( location.isClose(loc,7) )
             {
                 nearby_actors.push_back(actor.first);
-                qDebug() << "is close";
             }
         }
     }

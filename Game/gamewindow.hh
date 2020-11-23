@@ -16,7 +16,6 @@
 #include <QPushButton>
 #include <QString>
 
-const qreal STEP = 5;
 
 namespace Ui
 {
@@ -25,7 +24,12 @@ class GameWindow;
 
 namespace StudentSide
 {
+
+const int X_SCALE = 349;
+const int Y_SCALE = 553;
+
 class City;
+
 class GameWindow : public QMainWindow
 {
     Q_OBJECT
@@ -35,9 +39,8 @@ public:
     virtual ~GameWindow();
 
     void setSize(int w, int h);
-    void setTick(int t);
 
-    virtual ActorItem* addActor(int locX, int locY, int type = 0);
+    ActorItem* addActor(int locX, int locY, int type = 0);
     void moveActor(ActorItem* item, int locX, int locY, int type = 0);
     void deleteActor(ActorItem* item);
     void setPicture(QImage &img);

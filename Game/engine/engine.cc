@@ -10,7 +10,6 @@ Engine::Engine() :
     window_(new StudentSide::GameWindow(nullptr, city_)),
     game_logic_(new CourseSide::Logic)
 {
-    //city_ = std::dynamic_pointer_cast<StudentSide::City>(Interface::createGame());
 }
 
 void Engine::start()

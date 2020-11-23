@@ -13,13 +13,8 @@ const int BUS = 2;
 const int TOWER = 3;
 const int CHARACTER = 4;
 
-const int Y_SCALE = 553;
-const int X_SCALE = 349;
-
-const int BUS_X = 15;
-const int BUS_Y = 8;
-
-const int TARGET_SCALE = 65;
+const int SCALE = 65;
+const qreal STEP = 5;
 
 namespace StudentSide
 {
@@ -104,8 +99,6 @@ private:
     std::shared_ptr<StudentSide::GameWindow> window_ = nullptr;
     bool basic_backround_ = true;
 
-    std::vector<std::shared_ptr<Interface::IStop>> bus_stops_;
-    std::vector<std::shared_ptr<Interface::IActor>> actors_;
     std::map<std::shared_ptr<Interface::IActor>, ActorItem*> game_actors_;
 
     ActorItem* character_item_;

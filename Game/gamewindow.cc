@@ -62,14 +62,9 @@ void GameWindow::setSize(int w, int h)
     height_ = h;
 }
 
-void GameWindow::setTick(int t)
-{
-    tick_ = t;
-}
-
 ActorItem* GameWindow::addActor(int locX, int locY, int type)
 {
-    ActorItem* nActor = new ActorItem(locX, locY, type);
+    ActorItem* nActor = new ActorItem(X_SCALE + locX, Y_SCALE - locY, type);
     if ( type == 4 ) // if target character
     {
         nActor->setZValue(1); // used to keep target on top of other items
@@ -82,7 +77,7 @@ void GameWindow::moveActor(ActorItem* item, int locX, int locY, int type)
 {
     if ( item != nullptr)
     {
-        item->setCoord(locX, locY);
+        item->setCoord( X_SCALE + locX, Y_SCALE - locY);
     }
 }
 
@@ -91,6 +86,7 @@ void GameWindow::deleteActor(ActorItem* item)
     if ( item != nullptr )
     {
         map->removeItem(item);
+        delete item;
     }
 }
 
