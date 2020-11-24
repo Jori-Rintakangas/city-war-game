@@ -8,40 +8,36 @@ Statistics::Statistics(std::shared_ptr<StudentSide::GameWindow> window) :
 {
 }
 
-void Statistics::scoreCalculate()
+void Statistics::scoreUpdate()
 {
     score_ = destroyed_buses_ * 3 + destroyed_enemies_;
-}
-
-void Statistics::accuracyCalculate()
-{
-    accuracy_ = (int) round(hit_shots_ / total_shots_);
-}
-
-void Statistics::scoreShow()
-{
     window_->updateScore(score_);
 }
 
-void Statistics::accuracyShow()
+void Statistics::accuracyUpdate()
 {
+    accuracy_ = (int) round(hit_shots_ / total_shots_);
     window_->updateAccuracy(accuracy_);
-}
-
-void Statistics::busDestroyed()
-{
-}
-
-void Statistics::enemyDestroyed()
-{
 }
 
 void Statistics::shotFired()
 {
+    total_shots_++;
 }
 
 void Statistics::shotHit()
 {
+    hit_shots_++;
+}
+
+void Statistics::busDestroyed()
+{
+    destroyed_buses_++;
+}
+
+void Statistics::enemyDestroyed(int enemy_num)
+{
+    destroyed_enemies_ += enemy_num;
 }
 
 } //namespace

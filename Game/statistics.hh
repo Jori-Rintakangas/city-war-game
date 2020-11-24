@@ -10,14 +10,12 @@ class Statistics
 {
 public:
     Statistics(std::shared_ptr<StudentSide::GameWindow> window);
-    void scoreCalculate();
-    void accuracyCalculate();
-    void scoreShow();
-    void accuracyShow();
-    void busDestroyed();
-    void enemyDestroyed();
+    void scoreUpdate();
+    void accuracyUpdate();
     void shotFired();
     void shotHit();
+    void busDestroyed();
+    void enemyDestroyed(int enemy_num);
 
 private:
     std::shared_ptr<StudentSide::GameWindow> window_ = nullptr;

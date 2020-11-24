@@ -3,6 +3,7 @@
 #include "interfaces/icity.hh"
 #include "gamewindow.hh"
 #include "gamecharacter.hh"
+#include "statistics.hh"
 
 #include <QTime>
 #include <QKeyEvent>
@@ -24,7 +25,7 @@ namespace StudentSide
 /**
  * @brief City class contains operations for handling game characters in the game.
  */
-
+class Statistics;
 class GameWindow;
 class City : public Interface::ICity
 {
@@ -83,7 +84,7 @@ public:
      * \param window A pointer to a gamewindow used in the game
      * \param basic Game's background type
      */
-    void getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool basic);
+    void getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool basic, std::shared_ptr<StudentSide::Statistics> statistics);
 
     /*!
      * \brief executeUserCommand executes the command that user wants
@@ -118,6 +119,7 @@ private:
 
     ActorItem* character_item_;
     std::shared_ptr<Interface::IActor> character_;
+    std::shared_ptr<StudentSide::Statistics> statistics_ = nullptr;
 };
 
 }

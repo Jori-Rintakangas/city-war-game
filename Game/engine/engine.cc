@@ -17,7 +17,7 @@ void Engine::start()
 {
     game_character_->createCharacter();
 
-    city_->getGameWindow(window_, false);
+    city_->getGameWindow(window_, false, statistics_);
     city_->setBackground(basic_, big_);
     city_->addActor(game_character_);
 

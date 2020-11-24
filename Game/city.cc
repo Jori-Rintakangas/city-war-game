@@ -118,10 +118,11 @@ bool City::isGameOver() const
     return false;
 }
 
-void City::getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool basic)
+void City::getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool basic, std::shared_ptr<StudentSide::Statistics> statistics)
 {
     window_ = window;
     basic_backround_ = basic;
+    statistics_ = statistics;
 }
 
 void City::executeUserCommand(QKeyEvent *event)
@@ -145,14 +146,20 @@ void City::executeUserCommand(QKeyEvent *event)
     }
     if ( event->key() == Qt::Key_Space )
     {
+        statistics_->shotFired();
         std::vector<std::shared_ptr<Interface::IActor>> vec = getNearbyActors(loc);
         if ( vec.size() != 0 )
         {
+            statistics_->shotHit();
             for ( auto& bus : vec )
             {
+                statistics_->busDestroyed();
+                //statistics_->enemyDestroyed(enemy_num);
                 bus->remove();
             }
+            statistics_->scoreUpdate();
         }
+        statistics_->accuracyUpdate();
     }
 }
 
