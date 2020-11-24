@@ -8,7 +8,8 @@ Engine::Engine() :
     city_(new StudentSide::City),
     game_character_(new StudentSide::GameCharacter),
     window_(new StudentSide::GameWindow(nullptr, city_)),
-    game_logic_(new CourseSide::Logic)
+    game_logic_(new CourseSide::Logic),
+    statistics_(new StudentSide::Statistics(window_))
 {
 }
 
