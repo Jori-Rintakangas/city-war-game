@@ -38,23 +38,19 @@ public:
     explicit GameWindow(QWidget *parent = nullptr, std::shared_ptr<StudentSide::City> game_city = nullptr);
     virtual ~GameWindow();
 
-    void setSize(int w, int h);
-
     ActorItem* addActor(int locX, int locY, int type = 0);
     void moveActor(ActorItem* item, int locX, int locY, int type = 0);
     void deleteActor(ActorItem* item);
     void setPicture(QImage &img);
-    void startOrStop();
     void readInputTime(int input_min);
     void gameOver();
     void updateScore(int score = 0);
     void keyPressEvent(QKeyEvent* event) override;
 
 signals:
-    void gameStarted();
+    //void gameStarted();
 
 private slots:
-    void on_startButton_clicked();
     void displayLeftTime();
 
 private:
@@ -65,17 +61,15 @@ private:
 
     int width_ = 1095; //pxls
     int height_ = 592;
-    int tick_ = 500; //ms
     int total_time_ = 0; //s
     int spent_time_ = 0; //s
     int left_min_ = 0;
     int left_sec_ = 0;
+    int score_ = 0;
 
     bool is_running_ = false;
     bool is_game_over_ = true;
 
-    static const QString S_START;
-    static const QString S_STOP;
 };
 
 } //namespace

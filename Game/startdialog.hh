@@ -25,6 +25,7 @@ signals:
 private slots:
 
     void on_game_time_valueChanged(int arg1);
+
     void accept() override;
 
 private:

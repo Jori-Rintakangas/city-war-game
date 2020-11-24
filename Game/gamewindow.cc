@@ -10,8 +10,6 @@
 
 const int PADDING = 10;
 const int SIZE_SCALE = 3;
-const QString StudentSide::GameWindow::S_START = QString("Start");
-const QString StudentSide::GameWindow::S_STOP = QString("Stop");
 
 namespace StudentSide
 {
@@ -23,11 +21,7 @@ GameWindow::GameWindow(QWidget *parent, std::shared_ptr<City> game_city) :
 {
     ui->setupUi(this);
     ui->gameView->setFixedSize(width_+SIZE_SCALE, height_+SIZE_SCALE);
-    ui->centralwidget->setFixedSize(width_ + ui->startButton->width() + PADDING, height_ + PADDING);
-
-    ui->startButton->move(width_ + PADDING , PADDING);
-    connect(ui->startButton, &QPushButton::clicked,
-                this, &GameWindow::startOrStop);
+    ui->centralwidget->setFixedSize(width_ + 4 * PADDING, height_ + PADDING);
 
     map = new QGraphicsScene(this);
     ui->gameView->setScene(map);
@@ -42,25 +36,15 @@ GameWindow::GameWindow(QWidget *parent, std::shared_ptr<City> game_city) :
     StartDialog* dialog = new StartDialog;
     connect(dialog, &StartDialog::signal_send, this, &GameWindow::readInputTime);
     dialog->exec();
+    timer->start(1000);
 
     ui->score->setText(QString::number(0));
     ui->score->setReadOnly(true);
-
-    if (total_time_ == 0)
-    {
-        ui->startButton->setEnabled(false);
-    }
 }
 
 GameWindow::~GameWindow()
 {
     delete ui;
-}
-
-void GameWindow::setSize(int w, int h)
-{
-    width_ = w;
-    height_ = h;
 }
 
 ActorItem* GameWindow::addActor(int locX, int locY, int type)
@@ -96,22 +80,6 @@ void GameWindow::setPicture(QImage &img)
     map->setBackgroundBrush(img);
 }
 
-void GameWindow::startOrStop()
-{
-    if(ui->startButton->text() == GameWindow::S_START)
-    {
-        timer->start(1000);
-        is_running_ = true;
-        ui->startButton->setText(GameWindow::S_STOP);
-    }
-    else
-    {
-        timer->stop();
-        is_running_ = false;
-        ui->startButton->setText(GameWindow::S_START);
-    }
-}
-
 void GameWindow::readInputTime(int input_min)
 {
     ui->left_m->display(input_min);
@@ -138,15 +106,16 @@ void GameWindow::gameOver()
     timer->stop();
     is_game_over_ = true;
     is_running_ = false;
-    QMessageBox::information(this, tr("ERROR"), tr("GAME OVER. Times up! \n Your score is "));
+    QMessageBox msgBox;
+    QString status = QString("GAME OVER :) Times up! \n Your score is %1 .").arg(score_);
+    QMessageBox::information(this, tr("Info"), status);
     this->close();
-    total_time_ = 0; //ms
-    spent_time_ = 0; //ms
 }
 
 void GameWindow::updateScore(int score)
 {
-    ui->score->setText(QString::number(score));
+    score_ = score;
+    ui->score->setText(QString::number(score_));
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
@@ -156,8 +125,3 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 
 } //namespace
 
-void StudentSide::GameWindow::on_startButton_clicked()
-{
-    qDebug() << "Start clicked";
-    emit gameStarted();
-}

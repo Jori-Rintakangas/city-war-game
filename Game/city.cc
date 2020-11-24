@@ -104,7 +104,7 @@ std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface
         if ( std::dynamic_pointer_cast<Interface::IVehicle>(actor.first) != nullptr )
         {
             Interface::Location location = actor.first->giveLocation();
-            if ( location.isClose(loc,7) )
+            if ( location.isClose(loc,6) )
             {
                 nearby_actors.push_back(actor.first);
             }
