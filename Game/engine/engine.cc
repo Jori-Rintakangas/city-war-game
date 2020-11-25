@@ -13,20 +13,25 @@ Engine::Engine() :
 {
 }
 
-void Engine::start()
+bool Engine::start()
 {
-    game_character_->createCharacter();
+    if ( window_->isStarted() )
+    {
+        game_character_->createCharacter();
 
-    city_->getGameWindow(window_, false, statistics_);
-    city_->setBackground(basic_, big_);
-    city_->addActor(game_character_);
+        city_->initializeCity(window_, false, statistics_);
+        city_->setBackground(basic_, big_);
+        city_->addActor(game_character_);
+        city_->startGame();
 
-    window_->show();
+        game_logic_->setTime(16,0);
+        game_logic_->takeCity(city_);
+        game_logic_->fileConfig();
+        game_logic_->finalizeGameStart();
 
-    game_logic_->takeCity(city_);
-    game_logic_->fileConfig();
-    game_logic_->finalizeGameStart();
-
+        return true;
+    }
+    return false;
 }
 
 }

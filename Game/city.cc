@@ -39,7 +39,7 @@ void City::addStop(std::shared_ptr<Interface::IStop> stop)
 
 void City::startGame()
 {
-
+    window_->show();
 }
 
 void City::addActor(std::shared_ptr<Interface::IActor> new_actor)
@@ -104,7 +104,7 @@ std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface
         if ( std::dynamic_pointer_cast<Interface::IVehicle>(actor.first) != nullptr )
         {
             Interface::Location location = actor.first->giveLocation();
-            if ( location.isClose(loc,6) )
+            if ( location.isClose(loc,7) )
             {
                 nearby_actors.push_back(actor.first);
             }
@@ -118,7 +118,7 @@ bool City::isGameOver() const
     return false;
 }
 
-void City::getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool basic, std::shared_ptr<StudentSide::Statistics> statistics)
+void City::initializeCity(std::shared_ptr<StudentSide::GameWindow> window, bool basic, std::shared_ptr<StudentSide::Statistics> statistics)
 {
     window_ = window;
     basic_backround_ = basic;
@@ -144,7 +144,7 @@ void City::executeUserCommand(QKeyEvent *event)
     {
         moveVertical(STEP);
     }
-    if ( event->key() == Qt::Key_Space )
+    if ( event->key() == Qt::Key_L )
     {
         statistics_->shotFired();
         std::vector<std::shared_ptr<Interface::IActor>> vec = getNearbyActors(loc);

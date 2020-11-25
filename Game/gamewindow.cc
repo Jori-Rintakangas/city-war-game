@@ -33,9 +33,10 @@ GameWindow::GameWindow(QWidget *parent, std::shared_ptr<City> game_city) :
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(displayLeftTime()));
 
-    StartDialog* dialog = new StartDialog;
-    connect(dialog, &StartDialog::signal_send, this, &GameWindow::readInputTime);
-    dialog->exec();
+    dialog_ = new StartDialog;
+    connect(dialog_, &StartDialog::signal_send, this, &GameWindow::readInputTime);
+
+    dialog_->exec();
     timer->start(1000);
 
     ui->score->setText(QString::number(0));
@@ -129,6 +130,15 @@ void GameWindow::updateAccuracy(int accuracy)
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
     game_city_->executeUserCommand(event);
+}
+
+bool GameWindow::isStarted()
+{
+    if ( dialog_->result() == 0 )
+    {
+        return false;
+    }
+    return true;
 }
 
 } //namespace

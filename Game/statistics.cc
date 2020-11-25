@@ -19,7 +19,6 @@ void Statistics::scoreUpdate()
 void Statistics::accuracyUpdate()
 {
     accuracy_ = (int) round(hit_shots_ / total_shots_ * 100);
-    qDebug()<< (hit_shots_ / total_shots_ * 100);
     window_->updateAccuracy(accuracy_);
 }
 

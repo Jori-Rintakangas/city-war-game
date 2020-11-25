@@ -5,7 +5,8 @@
 #include "actoritem.hh"
 #include "gamecharacter.hh"
 #include "city.hh"
-
+#include "startdialog.hh"
+#include "ui_startdialog.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QTimer>
@@ -47,6 +48,7 @@ public:
     void updateScore(int score = 0);
     void updateAccuracy(int accuracy = 0);
     void keyPressEvent(QKeyEvent* event) override;
+    bool isStarted();
 
 signals:
     //void gameStarted();
@@ -59,6 +61,7 @@ private:
     QGraphicsScene *map;
     QTimer *timer;
     std::shared_ptr<StudentSide::City> game_city_;
+    StartDialog* dialog_;
 
     int width_ = 1095; //pxls
     int height_ = 592;

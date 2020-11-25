@@ -80,11 +80,12 @@ public:
     bool isGameOver() const;
 
     /*!
-     * \brief getGameWindow gets the window for the game and game's background type
+     * \brief initializeCity gets the initialization information for the city.
      * \param window A pointer to a gamewindow used in the game
      * \param basic Game's background type
+     * \param statistics A pointer to city's statistics class
      */
-    void getGameWindow(std::shared_ptr<StudentSide::GameWindow> window, bool basic, std::shared_ptr<StudentSide::Statistics> statistics);
+    void initializeCity(std::shared_ptr<StudentSide::GameWindow> window, bool basic, std::shared_ptr<StudentSide::Statistics> statistics);
 
     /*!
      * \brief executeUserCommand executes the command that user wants

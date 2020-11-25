@@ -22,7 +22,7 @@ class Engine : public QObject
 public:
     Engine();
 
-    void start();
+    bool start();
 
 private:
 
