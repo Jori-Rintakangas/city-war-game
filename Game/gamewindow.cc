@@ -109,7 +109,7 @@ void GameWindow::gameOver()
     is_game_over_ = true;
     is_running_ = false;
     QMessageBox msgBox;
-    QString status = QString("GAME OVER :) Times up! \n Your score is %1. \n Your accuracy is %1%. ").arg(score_, accuracy_);
+    QString status = QString("GAME OVER :) Times up! \n Your score is %1. \n Your accuracy is %2%. ").arg(score_).arg(accuracy_);
     QMessageBox::information(this, tr("Info"), status);
     this->close();
 }
@@ -120,7 +120,7 @@ void GameWindow::updateScore(int score)
     ui->score->setText(QString::number(score_));
 }
 
-void GameWindow::updateAccuracy(float accuracy)
+void GameWindow::updateAccuracy(int accuracy)
 {
     accuracy_ = accuracy;
     ui->accuracy->setText(QString::number((accuracy)));

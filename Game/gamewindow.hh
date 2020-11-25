@@ -45,7 +45,7 @@ public:
     void readInputTime(int input_min);
     void gameOver();
     void updateScore(int score = 0);
-    void updateAccuracy(float accuracy = 0);
+    void updateAccuracy(int accuracy = 0);
     void keyPressEvent(QKeyEvent* event) override;
 
 signals:

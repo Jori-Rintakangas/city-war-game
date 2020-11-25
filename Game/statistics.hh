@@ -5,7 +5,7 @@
 
 namespace StudentSide
 {
-
+class GameWindow;
 class Statistics
 {
 public:
@@ -24,8 +24,8 @@ private:
     int accuracy_ = 0; //%
     int destroyed_buses_ = 0;
     int destroyed_enemies_ = 0;
-    int total_shots_ = 0;
-    int hit_shots_ = 0;
+    double total_shots_ = 0;
+    double hit_shots_ = 0;
 
 };
 
