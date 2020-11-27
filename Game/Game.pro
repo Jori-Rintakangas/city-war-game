@@ -7,7 +7,6 @@ CONFIG += c++14
 
 SOURCES += \
     actoritem.cc \
-    busstopitem.cc \
     city.cc \
     creategame.cc \
     engine/engine.cc \
@@ -15,7 +14,8 @@ SOURCES += \
     gamewindow.cc \
     main.cc \
     startdialog.cc \
-    statistics.cc
+    statistics.cc \
+    toweritem.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -43,13 +43,13 @@ else:unix: PRE_TARGETDEPS += \
 
 HEADERS += \
     actoritem.hh \
-    busstopitem.hh \
     city.hh \
     engine/engine.hh \
     gamecharacter.hh \
     gamewindow.hh \
     startdialog.hh \
-    statistics.hh
+    statistics.hh \
+    toweritem.hh
 
 FORMS += \
     gamewindow.ui \

@@ -12,13 +12,13 @@ const int WIDTH = 200;
 const int HEIGHT = 200;
 
 /**
- * @brief Defines drawing and setting the actor item (= an object acting in the game).
+ * @brief defines drawing and setting the actor item (= an object acting in the game).
  */
 class ActorItem : public QGraphicsItem
 {
 public:
     /**
-     * @brief ActorItem
+     * @brief actor item constructor
      * @param x axis of character.
      * @param y axis of character.
      * @param type of the character that is drawing.
@@ -37,7 +37,7 @@ public:
     QRectF boundingRect() const;
 
     /**
-     * @brief Provide the actor item's painting implementation.
+     * @brief provide the actor item's painting implementation.
      * @param painter is used for paining implementation.
      * @param option provides style options for the actor item.
      * @param widget (optional) points to the widget that is being painted on.
