@@ -32,7 +32,7 @@ const int X_SCALE = 349;
 const int Y_SCALE = 553;
 
 /**
- * @brief defines implementation of the game window
+ * @brief defines operations of the game window
  */
 class City;
 class GameWindow : public QMainWindow
