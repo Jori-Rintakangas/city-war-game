@@ -94,6 +94,13 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
     ActorItem* item = game_actors_.at(actor);
     Interface::Location new_location = actor->giveLocation();
     window_->moveActor(item, new_location.giveX(), new_location.giveY());
+    if ( std::dynamic_pointer_cast<Interface::IVehicle>(actor) != nullptr )
+    {
+        std::shared_ptr<CourseSide::Nysse> bus = nullptr;
+        bus = std::dynamic_pointer_cast<CourseSide::Nysse>(actor);
+        item->updateBusPassengerNum(bus->getPassengers().size());
+    }
+
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface::Location loc) const
@@ -147,14 +154,16 @@ void City::executeUserCommand(QKeyEvent *event)
     if ( event->key() == Qt::Key_L )
     {
         statistics_->shotFired();
-        std::vector<std::shared_ptr<Interface::IActor>> vec = getNearbyActors(loc);
-        if ( vec.size() != 0 )
+        std::vector<std::shared_ptr<Interface::IActor>> actors = getNearbyActors(loc);
+        if ( actors.size() != 0 )
         {
             statistics_->shotHit();
-            for ( auto& bus : vec )
+            for ( auto actor : actors )
             {
                 statistics_->busDestroyed();
-                //statistics_->enemyDestroyed(enemy_num);
+                std::shared_ptr<CourseSide::Nysse> bus = nullptr;
+                bus = std::dynamic_pointer_cast<CourseSide::Nysse>(actor);
+                statistics_->enemyDestroyed(bus->getPassengers().size());
                 bus->remove();
             }
             statistics_->scoreUpdate();

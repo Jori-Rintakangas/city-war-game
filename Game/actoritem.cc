@@ -54,7 +54,6 @@ void ActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         int spanAngle = -120 * 16;
         painter->drawChord(rectangle, startAngle, spanAngle); // driver mouth
 
-
     }
 
     if (type_ == 3) // Tower drawing
@@ -146,6 +145,11 @@ void ActorItem::setCoord(int x, int y)
 {
     setX( x );
     setY( y );
+}
+
+void ActorItem::updateBusPassengerNum(int amount)
+{
+    passenger_num_ = amount;
 }
 
 } //namespace

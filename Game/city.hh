@@ -4,7 +4,7 @@
 #include "gamewindow.hh"
 #include "gamecharacter.hh"
 #include "statistics.hh"
-
+#include "actors/nysse.hh"
 #include <QTime>
 #include <QKeyEvent>
 

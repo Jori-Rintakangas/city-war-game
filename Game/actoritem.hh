@@ -51,6 +51,12 @@ public:
      */
     void setCoord(int x, int y);
 
+    /*!
+     * \brief updateBusPassengerNum updates the amount of passengers in the bus
+     * \param amount The new amount of passengers
+     */
+    void updateBusPassengerNum(int amount);
+
 private:
     int x_;
     int y_;
