@@ -22,15 +22,12 @@ void ActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     if (type_ == 1) // Bus stop drawing
     {
         painter->setBrush(Qt::black);
-        painter->drawRect(0, 0, 2, 16);
+        painter->drawRect(7, 8, 4, 20); // stick
         painter->setBrush(Qt::blue);
-        static const QPointF points[3] =
-        {
-            QPointF(2, 0),
-            QPointF(14, 4),
-            QPointF(2, 8)
-        };
-        painter->drawPolygon(points, 3);
+        painter->drawEllipse(0, 0, 17, 17); // number board
+        painter->setPen(Qt::white);
+        QString str_waiting_passenger_num = QString::number(waiting_passenger_num_);
+        painter->drawText(4, 13, str_waiting_passenger_num); // display waiting_passenger_num_ (4,12)
     }
 
     if (type_ == 2) // Bus drawing

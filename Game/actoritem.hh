@@ -62,6 +62,7 @@ private:
     int y_;
     int type_;
     int passenger_num_ = 0;
+    int waiting_passenger_num_ = 0;
 };
 
 }
