@@ -6,7 +6,7 @@
 #include "gamecharacter.hh"
 #include "statistics.hh"
 #include "actors/nysse.hh"
-#include "toweritem.hh"
+#include "missile.hh"
 
 #include <QTime>
 #include <QKeyEvent>
@@ -34,7 +34,7 @@ namespace StudentSide
  */
 class Statistics;
 class GameWindow;
-class TowerItem;
+class Missile;
 class City : public Interface::ICity
 {
 public:
@@ -129,7 +129,7 @@ private:
     ActorItem* character_item_ = nullptr;
     std::shared_ptr<Interface::IActor> character_ = nullptr;
     std::shared_ptr<StudentSide::Statistics> statistics_ = nullptr;
-    std::shared_ptr<StudentSide::TowerItem> missile_ = nullptr;
+    std::shared_ptr<StudentSide::Missile> missile_ = nullptr;
 };
 
 }

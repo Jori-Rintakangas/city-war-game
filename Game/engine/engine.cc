@@ -10,7 +10,7 @@ Engine::Engine() :
     window_(new StudentSide::GameWindow(nullptr, city_)),
     game_logic_(new CourseSide::Logic),
     statistics_(new StudentSide::Statistics(window_)),
-    tower_item_(new StudentSide::TowerItem(city_))
+    tower_item_(new StudentSide::Missile(city_))
 {
 }
 

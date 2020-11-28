@@ -59,11 +59,11 @@ void City::addActor(std::shared_ptr<Interface::IActor> new_actor)
         character_item_ = actor_item;
         character_ = new_actor;
     }
-    else if (std::dynamic_pointer_cast<StudentSide::TowerItem>(new_actor) != nullptr)
+    else if (std::dynamic_pointer_cast<StudentSide::Missile>(new_actor) != nullptr)
     {
         actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), MISSILE);
         missile_item_ = actor_item;
-        missile_ = std::dynamic_pointer_cast<StudentSide::TowerItem>(new_actor);
+        missile_ = std::dynamic_pointer_cast<StudentSide::Missile>(new_actor);
     }
     else
     {   // passengers are not drawed to the gamewindow

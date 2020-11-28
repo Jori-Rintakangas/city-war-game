@@ -18,7 +18,7 @@ SOURCES +=  tst_statisticstest.cc \
         ../../Game/city.cc \
         ../../Game/creategame.cc \
         ../../Game/gamecharacter.cc \
-        ../../Game/toweritem.cc \
+        ../../Game/missile.cc \
         ../../Game/engine/engine.cc \
         ../../Course/CourseLib/actors/nysse.cc \
         ../../Course/CourseLib/actors/passenger.cc \
@@ -38,7 +38,7 @@ HEADERS += \
             ../../Game/startdialog.hh \
             ../../Game/city.hh \
             ../../Game/gamecharacter.hh \
-            ../../Game/toweritem.hh \
+            ../../Game/missile.hh \
             ../../Game/engine/engine.hh \
             ../../Course/CourseLib/actors/nysse.hh \
             ../../Course/CourseLib/actors/passenger.hh \

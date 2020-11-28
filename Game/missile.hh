@@ -1,5 +1,5 @@
-#ifndef TOWERITEM_HH
-#define TOWERITEM_HH
+#ifndef MISSILE_HH
+#define MISSILE_HH
 
 #include "interfaces/icity.hh"
 #include "gamewindow.hh"
@@ -12,18 +12,18 @@ namespace StudentSide
  * @brief TowerItem class contains operations for handling tower item (missile) in the game.
  */
 class City;
-class TowerItem : public Interface::IActor
+class Missile : public Interface::IActor
 {
 public:
     /**
      * @brief constructor of TowerItem
      */
-    TowerItem(std::shared_ptr<StudentSide::City> city);
+    Missile(std::shared_ptr<StudentSide::City> city);
 
     /**
      * \brief TowerItem destructor
      */
-    virtual ~TowerItem();
+    virtual ~Missile();
 
     /**
      * \brief giveLocation returns the tower's location

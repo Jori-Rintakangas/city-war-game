@@ -1,46 +1,46 @@
-#include "toweritem.hh"
+#include "missile.hh"
 
 namespace StudentSide
 {
 
-TowerItem::TowerItem(std::shared_ptr<StudentSide::City> city) :
+Missile::Missile(std::shared_ptr<StudentSide::City> city) :
     city_(city)
 {
 
 }
 
-TowerItem::~TowerItem()
+Missile::~Missile()
 {
 
 }
 
-Interface::Location TowerItem::giveLocation() const
+Interface::Location Missile::giveLocation() const
 {
     return location_;
 }
 
-void TowerItem::move(Interface::Location loc)
+void Missile::move(Interface::Location loc)
 {
     location_ = loc;
 }
 
-bool TowerItem::isRemoved() const
+bool Missile::isRemoved() const
 {
     return removed_;
 }
 
-void TowerItem::remove()
+void Missile::remove()
 {
     removed_ = true;
 }
 
-Interface::Location TowerItem::createMissile()
+Interface::Location Missile::createMissile()
 {
     location_.setXY(default_x_, default_y_);
     return location_;
 }
 
-void TowerItem::updatePosition(ActorItem* missile_item)
+void Missile::updatePosition(ActorItem* missile_item)
 {
     missile_item->moveBy(0.01, 0.01);
     location_.setXY(location_.giveX() + 0.01, location_.giveY() - 0.01);

@@ -13,9 +13,9 @@ SOURCES += \
     gamecharacter.cc \
     gamewindow.cc \
     main.cc \
+    missile.cc \
     startdialog.cc \
-    statistics.cc \
-    toweritem.cc
+    statistics.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -47,9 +47,9 @@ HEADERS += \
     engine/engine.hh \
     gamecharacter.hh \
     gamewindow.hh \
+    missile.hh \
     startdialog.hh \
-    statistics.hh \
-    toweritem.hh
+    statistics.hh
 
 FORMS += \
     gamewindow.ui \
