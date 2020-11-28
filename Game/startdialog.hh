@@ -42,7 +42,7 @@ private slots:
      * @brief game time value is choosed by user.
      * @param input_min given by the user.
      */
-    void gameTimeValueChanged(int input_min);
+    void on_game_time_valueChanged(int input_min);
 
     /**
      * @brief when user press the game start button, then the signal is accepted.
