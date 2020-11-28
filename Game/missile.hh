@@ -1,9 +1,18 @@
 #ifndef MISSILE_HH
 #define MISSILE_HH
 
-#include "interfaces/icity.hh"
-#include "gamewindow.hh"
+#include "interfaces/iactor.hh"
 #include "core/location.hh"
+#include "actoritem.hh"
+
+const int START_X = -110;
+const int START_Y = 550;
+const int MAX_X = 1300;
+const int MIN_X = 240;
+const int MAX_Y = 450;
+const int MIN_Y = 5;
+const int SELECT_X = 0;
+const int SELECT_Y = 1;
 
 namespace StudentSide
 {
@@ -11,14 +20,13 @@ namespace StudentSide
 /**
  * @brief TowerItem class contains operations for handling tower item (missile) in the game.
  */
-class City;
 class Missile : public Interface::IActor
 {
 public:
     /**
      * @brief constructor of TowerItem
      */
-    Missile(std::shared_ptr<StudentSide::City> city);
+    Missile();
 
     /**
      * \brief TowerItem destructor
@@ -55,19 +63,38 @@ public:
     Interface::Location createMissile();
 
     /**
-     * @brief updatePosition
+     * @brief updatePosition is updataing missile position
      * @param missile_item
      */
     void updatePosition(ActorItem* missile_item);
 
+    /**
+     * @brief randomNumberGenerator returns random number in the range
+     * @param min_val for random number
+     * @param max_val for random number
+     * @return
+     */
+    int randomNumberGenerator(int min_val, int max_val);
+
+    /**
+     * @brief getEndPostion gets the end position of the missile randomly
+     */
+    void getEndPostion();
+
+    /**
+     * @brief getStepSize calculates what is the step size in x axis and y axis
+     */
+    void getStepSize();
+
 private:
     Interface::Location location_;
-    std::shared_ptr<StudentSide::City> city_ = nullptr;
-
-    int default_x_ = -110;
-    int default_y_ = 550;
 
     bool removed_ = false;
+
+    double step_x_ = 0.05;
+    double step_y_ = 0.05;
+    int end_x_ = 700;
+    int end_y_ = 450;
 };
 
 } //namespace
