@@ -14,20 +14,14 @@ TowerItem::~TowerItem()
 
 }
 
-Interface::Location TowerItem::createTower()
-{
-    tower_location_.setXY(default_x_, default_y_);
-    return tower_location_;
-}
-
 Interface::Location TowerItem::giveLocation() const
 {
-    return tower_location_;
+    return location_;
 }
 
 void TowerItem::move(Interface::Location loc)
 {
-    tower_location_ = loc;
+    location_ = loc;
 }
 
 bool TowerItem::isRemoved() const
@@ -38,6 +32,19 @@ bool TowerItem::isRemoved() const
 void TowerItem::remove()
 {
     removed_ = true;
+}
+
+Interface::Location TowerItem::createMissile()
+{
+    location_.setXY(default_x_, default_y_);
+    return location_;
+}
+
+void TowerItem::updatePosition(ActorItem* missile_item)
+{
+    missile_item->moveBy(0.01, 0.01);
+    location_.setXY(location_.giveX() + 0.01, location_.giveY() - 0.01);
+    move(location_);
 }
 
 } // namespace

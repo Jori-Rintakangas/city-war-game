@@ -19,7 +19,7 @@ bool Engine::start()
     if ( window_->isStarted() )
     {
         game_character_->createCharacter();
-        tower_item_->createTower();
+        tower_item_->createMissile();
 
         city_->initializeCity(window_, false, statistics_);
         city_->setBackground(basic_, big_);

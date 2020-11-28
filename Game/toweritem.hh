@@ -26,12 +26,6 @@ public:
     virtual ~TowerItem();
 
     /**
-     * \brief createTowerItem creates tower with default location
-     * \return Location object of the tower
-     */
-    Interface::Location createTower();
-
-    /**
      * \brief giveLocation returns the tower's location
      * \return Location object of the tower
      */
@@ -54,8 +48,20 @@ public:
      */
     void remove();
 
+    /**
+     * \brief createTowerItem creates tower with default location
+     * \return Location object of the tower
+     */
+    Interface::Location createMissile();
+
+    /**
+     * @brief updatePosition
+     * @param missile_item
+     */
+    void updatePosition(ActorItem* missile_item);
+
 private:
-    Interface::Location tower_location_;
+    Interface::Location location_;
     std::shared_ptr<StudentSide::City> city_ = nullptr;
 
     int default_x_ = -110;

@@ -31,6 +31,7 @@ namespace StudentSide
  */
 class Statistics;
 class GameWindow;
+class TowerItem;
 class City : public Interface::ICity
 {
 public:
@@ -121,10 +122,11 @@ private:
     bool basic_backround_ = true;
 
     std::map<std::shared_ptr<Interface::IActor>, ActorItem*> game_actors_;
-
-    ActorItem* character_item_;
-    std::shared_ptr<Interface::IActor> character_;
+    ActorItem* missile_item_ = nullptr;
+    ActorItem* character_item_ = nullptr;
+    std::shared_ptr<Interface::IActor> character_ = nullptr;
     std::shared_ptr<StudentSide::Statistics> statistics_ = nullptr;
+    std::shared_ptr<StudentSide::TowerItem> missile_ = nullptr;
 };
 
 }

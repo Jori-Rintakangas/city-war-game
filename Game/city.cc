@@ -61,7 +61,9 @@ void City::addActor(std::shared_ptr<Interface::IActor> new_actor)
     }
     else if (std::dynamic_pointer_cast<StudentSide::TowerItem>(new_actor) != nullptr)
     {
-        actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), TOWER);
+        actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), MISSILE);
+        missile_item_ = actor_item;
+        missile_ = std::dynamic_pointer_cast<StudentSide::TowerItem>(new_actor);
     }
     else
     {   // passengers are not drawed to the gamewindow
@@ -104,7 +106,7 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
         bus = std::dynamic_pointer_cast<CourseSide::Nysse>(actor);
         item->updateBusPassengerNum(bus->getPassengers().size());
     }
-
+    missile_->updatePosition(missile_item_);
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface::Location loc) const
