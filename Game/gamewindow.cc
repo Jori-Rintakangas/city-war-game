@@ -35,7 +35,6 @@ GameWindow::GameWindow(QWidget *parent, std::shared_ptr<City> game_city) :
 
     dialog_ = new StartDialog;
     connect(dialog_, &StartDialog::signal_send, this, &GameWindow::readInputTime);
-
     dialog_->exec();
     timer->start(1000);
 

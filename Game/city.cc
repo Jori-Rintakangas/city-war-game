@@ -59,6 +59,10 @@ void City::addActor(std::shared_ptr<Interface::IActor> new_actor)
         character_item_ = actor_item;
         character_ = new_actor;
     }
+    else if (std::dynamic_pointer_cast<StudentSide::TowerItem>(new_actor) != nullptr)
+    {
+        actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), TOWER);
+    }
     else
     {   // passengers are not drawed to the gamewindow
         game_actors_.insert({new_actor, actor_item});

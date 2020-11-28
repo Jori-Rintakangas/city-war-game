@@ -19,7 +19,7 @@ StartDialog::~StartDialog()
     delete ui;
 }
 
-void StartDialog::gameTimeValueChanged(int input_min)
+void StartDialog::on_game_time_valueChanged(int input_min)
 {
     game_time_ = input_min;
 }
