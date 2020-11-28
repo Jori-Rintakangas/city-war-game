@@ -85,7 +85,6 @@ void GameWindow::setPicture(QImage &img)
 void GameWindow::readInputTime(int input_min)
 {
     ui->left_m->display(input_min);
-    qDebug() << "input is"<< input_min;
     total_time_ = input_min * 60; //s
 }
 

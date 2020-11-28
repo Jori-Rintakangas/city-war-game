@@ -1,10 +1,13 @@
 #ifndef CITY_HH
 #define CITY_HH
+
 #include "interfaces/icity.hh"
 #include "gamewindow.hh"
 #include "gamecharacter.hh"
 #include "statistics.hh"
 #include "actors/nysse.hh"
+#include "toweritem.hh"
+
 #include <QTime>
 #include <QKeyEvent>
 
@@ -13,6 +16,7 @@ const int BUS_STOP = 1;
 const int BUS = 2;
 const int TOWER = 3;
 const int CHARACTER = 4;
+const int MISSILE = 5;
 
 const int SCALE = 65;
 const qreal STEP = 5;
