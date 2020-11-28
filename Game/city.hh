@@ -24,6 +24,9 @@ const qreal STEP = 5;
 const qreal LIMIT_Y = 373;
 const qreal LIMIT_X = 963;
 
+const int TOWER_X = -110;
+const int TOWER_Y = 550;
+
 namespace StudentSide
 {
 /**

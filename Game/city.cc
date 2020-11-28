@@ -136,6 +136,7 @@ void City::initializeCity(std::shared_ptr<StudentSide::GameWindow> window, bool 
     window_ = window;
     basic_backround_ = basic;
     statistics_ = statistics;
+    window_->addActor(TOWER_X, TOWER_Y, TOWER);
 }
 
 void City::executeUserCommand(QKeyEvent *event)
