@@ -106,11 +106,16 @@ void GameWindow::displayLeftTime()
 void GameWindow::gameOver(bool killed)
 {
     timer->stop();
-    is_game_over_ = true;
-    is_running_ = false;
     QMessageBox msgBox;
-    QString status = QString("GAME OVER :) Times up! \n Your score is %1. \n Your accuracy is %2%. ").arg(score_).arg(accuracy_);
-    QMessageBox::information(this, tr("Info"), status);
+    if (killed)
+    {
+        status_ = QString("GAME OVER :( \n You were killed by the enemy.");
+    }
+    else
+    {
+        status_ = QString("GAME OVER :) Times up! \n Your score is %1. \n Your accuracy is %2%. ").arg(score_).arg(accuracy_);
+    }
+    QMessageBox::information(this, tr("Info"), status_);
     this->close();
 }
 

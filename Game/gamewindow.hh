@@ -138,10 +138,7 @@ private:
     int left_sec_ = 0;
     int score_ = 0;
     int accuracy_ = 0;
-
-    bool is_running_ = false;
-    bool is_game_over_ = true;
-
+    QString status_ = "";
 };
 
 } //namespace
