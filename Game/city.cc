@@ -97,16 +97,20 @@ bool City::findActor(std::shared_ptr<Interface::IActor> actor) const
 
 void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
-    ActorItem* item = game_actors_.at(actor);
-    Interface::Location new_location = actor->giveLocation();
-    window_->moveActor(item, new_location.giveX(), new_location.giveY());
-    if ( std::dynamic_pointer_cast<Interface::IVehicle>(actor) != nullptr )
+    if ( not game_over_ )
     {
-        std::shared_ptr<CourseSide::Nysse> bus = nullptr;
-        bus = std::dynamic_pointer_cast<CourseSide::Nysse>(actor);
-        item->updateBusPassengerNum(bus->getPassengers().size());
+        ActorItem* item = game_actors_.at(actor);
+        Interface::Location new_location = actor->giveLocation();
+        window_->moveActor(item, new_location.giveX(), new_location.giveY());
+        if ( std::dynamic_pointer_cast<Interface::IVehicle>(actor) != nullptr )
+        {
+            std::shared_ptr<CourseSide::Nysse> bus = nullptr;
+            bus = std::dynamic_pointer_cast<CourseSide::Nysse>(actor);
+            item->updateBusPassengerNum(bus->getPassengers().size());
+        }
+        missile_->updatePosition(missile_item_);
+        missileHit();
     }
-    missile_->updatePosition(missile_item_);
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface::Location loc) const
@@ -128,7 +132,7 @@ std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface
 
 bool City::isGameOver() const
 {
-    return false;
+    return game_over_;
 }
 
 void City::initializeCity(std::shared_ptr<StudentSide::GameWindow> window, bool basic, std::shared_ptr<StudentSide::Statistics> statistics)
@@ -203,5 +207,18 @@ void City::moveHorizontal(qreal amount)
     }
 }
 
+void City::missileHit()
+{
+    int missile_x = missile_item_->x() + MISSILE_HEAD_X;
+    int missile_y = missile_item_->y() + MISSILE_HEAD_Y;
+    int character_x = character_item_->x() + SCALE;
+    int character_y = character_item_->y() + SCALE;
+    if ( ( missile_x < character_x + RANGE && missile_x > character_x - RANGE )
+         && ( missile_y < character_y + RANGE && missile_y > character_y - RANGE ) )
+    {
+        window_->gameOver(true);
+        game_over_ = true;
+    }
+}
 
 }

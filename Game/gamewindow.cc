@@ -99,11 +99,11 @@ void GameWindow::displayLeftTime()
 
     if (left_min_ == 0 and left_sec_ == 0)
     {
-        gameOver();
+        gameOver(false);
     }
 }
 
-void GameWindow::gameOver()
+void GameWindow::gameOver(bool killed)
 {
     timer->stop();
     is_game_over_ = true;

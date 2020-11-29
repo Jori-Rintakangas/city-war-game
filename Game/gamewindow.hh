@@ -91,7 +91,7 @@ public:
     /**
      * @brief implementation when game is over
      */
-    void gameOver();
+    void gameOver(bool killed);
 
     /**
      * @brief update score number on the line edit

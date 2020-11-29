@@ -18,14 +18,18 @@ const int TOWER = 3;
 const int CHARACTER = 4;
 const int MISSILE = 5;
 
+const int RANGE = 12;
 const int SCALE = 65;
-const qreal STEP = 5;
 
-const qreal LIMIT_Y = 373;
-const qreal LIMIT_X = 963;
+const int MISSILE_HEAD_X = 65;
+const int MISSILE_HEAD_Y = 14;
 
 const int TOWER_X = -110;
 const int TOWER_Y = 550;
+
+const qreal STEP = 5;
+const qreal LIMIT_X = 963;
+const qreal LIMIT_Y = 373;
 
 namespace StudentSide
 {
@@ -34,7 +38,6 @@ namespace StudentSide
  */
 class Statistics;
 class GameWindow;
-class Missile;
 class City : public Interface::ICity
 {
 public:
@@ -114,6 +117,11 @@ public:
     void moveHorizontal(qreal amount);
 
     /*!
+     * \brief missileHit checks if the missile hits the game character
+     */
+    void missileHit();
+
+    /*!
      * \brief City destructor
      */
     virtual ~City();
@@ -123,6 +131,7 @@ private:
     QTime clock_;
     std::shared_ptr<StudentSide::GameWindow> window_ = nullptr;
     bool basic_backround_ = true;
+    bool game_over_ = false;
 
     std::map<std::shared_ptr<Interface::IActor>, ActorItem*> game_actors_;
     ActorItem* missile_item_ = nullptr;
