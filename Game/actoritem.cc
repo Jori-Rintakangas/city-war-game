@@ -149,4 +149,9 @@ void ActorItem::updateBusPassengerNum(int amount)
     passenger_num_ = amount;
 }
 
+void ActorItem::updateStopPassengerNum(int amount)
+{
+    waiting_passenger_num_ = amount;
+}
+
 } //namespace

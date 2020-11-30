@@ -34,7 +34,11 @@ void City::setClock(QTime clock)
 void City::addStop(std::shared_ptr<Interface::IStop> stop)
 {
     Interface::Location stop_location = stop->getLocation();
-    window_->addActor(stop_location.giveX(),stop_location.giveY(), BUS_STOP);
+    if ( locationIsValid(stop_location) )
+    {
+        ActorItem* actor_item = window_->addActor(stop_location.giveX(),stop_location.giveY(), BUS_STOP);
+        bus_stops_.insert({stop, actor_item});
+    }
 }
 
 void City::startGame()
@@ -75,6 +79,7 @@ void City::removeActor(std::shared_ptr<Interface::IActor> actor)
 {
     if ( game_actors_.find(actor) != game_actors_.end() )
     {
+        actor->remove();
         actorRemoved(actor);
         game_actors_.erase(actor);
     }
@@ -108,6 +113,7 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
             bus = std::dynamic_pointer_cast<CourseSide::Nysse>(actor);
             item->updateBusPassengerNum(bus->getPassengers().size());
         }
+        updateBusStops();
         missile_->updatePosition(missile_item_);
         missileHit();
     }
@@ -219,6 +225,24 @@ void City::missileHit()
         window_->gameOver(true);
         game_over_ = true;
     }
+}
+
+void City::updateBusStops()
+{
+    for ( auto stop : bus_stops_ )
+    {
+        stop.second->updateStopPassengerNum(stop.first->getPassengers().size());
+    }
+}
+
+bool City::locationIsValid(Interface::Location loc)
+{
+    if ( loc.giveX() < CITY_EAST && loc.giveX() > CITY_WEST &&
+         loc.giveY() < CITY_NORTH && loc.giveY() > CITY_SOUTH )
+    {
+        return true;
+    }
+    return false;
 }
 
 }

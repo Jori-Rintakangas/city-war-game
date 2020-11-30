@@ -57,6 +57,12 @@ public:
      */
     void updateBusPassengerNum(int amount);
 
+    /*!
+     * \brief updateStopPassengerNum updates the amount of passengers in the bus stop
+     * \param amount The new amount of passengers
+     */
+    void updateStopPassengerNum(int amount);
+
 private:
     int x_;
     int y_;

@@ -31,6 +31,11 @@ const qreal STEP = 5;
 const qreal LIMIT_X = 963;
 const qreal LIMIT_Y = 373;
 
+const int CITY_NORTH = 550;
+const int CITY_SOUTH = 85;
+const int CITY_WEST = -350;
+const int CITY_EAST = 700;
+
 namespace StudentSide
 {
 /**
@@ -122,6 +127,18 @@ public:
     void missileHit();
 
     /*!
+     * \brief updateBusStops Updates the amount of passengers in the bus stop
+     */
+    void updateBusStops();
+
+    /*!
+     * \brief locationIsValid Checks whether the given location is valid
+     * \param loc A Location whose position is checked
+     * \return True if valid, false otherwise
+     */
+    bool locationIsValid(Interface::Location loc);
+
+    /*!
      * \brief City destructor
      */
     virtual ~City();
@@ -133,6 +150,7 @@ private:
     bool basic_backround_ = true;
     bool game_over_ = false;
 
+    std::map<std::shared_ptr<Interface::IStop>, ActorItem*> bus_stops_;
     std::map<std::shared_ptr<Interface::IActor>, ActorItem*> game_actors_;
     ActorItem* missile_item_ = nullptr;
     ActorItem* character_item_ = nullptr;
