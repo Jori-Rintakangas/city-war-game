@@ -5,7 +5,7 @@
 namespace StudentSide
 {
 
-Statistics::Statistics(std::shared_ptr<StudentSide::GameWindow> window) :
+Statistics::Statistics(std::shared_ptr<GameWindow> window) :
     window_(window)
 {
 }

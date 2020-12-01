@@ -55,7 +55,7 @@ void City::addActor(std::shared_ptr<Interface::IActor> new_actor)
         actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), BUS);
         game_actors_.insert({new_actor, actor_item});
     }
-    else if ( std::dynamic_pointer_cast<StudentSide::GameCharacter>(new_actor) != nullptr)
+    else if ( std::dynamic_pointer_cast<GameCharacter>(new_actor) != nullptr)
     {
         actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), CHARACTER);
         actor_location.setXY(actor_location.giveX() + SCALE, actor_location.giveY() - SCALE);
@@ -63,11 +63,11 @@ void City::addActor(std::shared_ptr<Interface::IActor> new_actor)
         character_item_ = actor_item;
         character_ = new_actor;
     }
-    else if (std::dynamic_pointer_cast<StudentSide::Missile>(new_actor) != nullptr)
+    else if (std::dynamic_pointer_cast<Missile>(new_actor) != nullptr)
     {
         actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), MISSILE);
         missile_item_ = actor_item;
-        missile_ = std::dynamic_pointer_cast<StudentSide::Missile>(new_actor);
+        missile_ = std::dynamic_pointer_cast<Missile>(new_actor);
     }
     else
     {   // passengers are not drawed to the gamewindow
@@ -140,7 +140,7 @@ bool City::isGameOver() const
     return game_over_;
 }
 
-void City::initializeCity(std::shared_ptr<StudentSide::GameWindow> window, bool basic, std::shared_ptr<StudentSide::Statistics> statistics)
+void City::initializeCity(std::shared_ptr<GameWindow> window, bool basic, std::shared_ptr<Statistics> statistics)
 {
     window_ = window;
     basic_backround_ = basic;

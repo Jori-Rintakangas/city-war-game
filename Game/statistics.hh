@@ -5,10 +5,11 @@
 
 namespace StudentSide
 {
+
+class GameWindow;
 /**
  * @brief Statistics class contains operations for handling statistics data.
  */
-class GameWindow;
 class Statistics
 {
 public:
@@ -16,7 +17,7 @@ public:
      * @brief constructor of Statistics
      * @param window is pointer of the game window.
      */
-    Statistics(std::shared_ptr<StudentSide::GameWindow> window);
+    Statistics(std::shared_ptr<GameWindow> window);
 
     /**
      * @brief new score is calculated and updated at game window.
@@ -50,7 +51,7 @@ public:
     void enemyDestroyed(int enemy_num);
 
 private:
-    std::shared_ptr<StudentSide::GameWindow> window_ = nullptr;
+    std::shared_ptr<GameWindow> window_ = nullptr;
 
     int score_ = 0;
     int accuracy_ = 0; //%

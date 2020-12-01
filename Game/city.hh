@@ -38,11 +38,12 @@ const int CITY_EAST = 700;
 
 namespace StudentSide
 {
+class Statistics;
+class GameWindow;
+
 /**
  * @brief City class contains operations for handling game characters in the game.
  */
-class Statistics;
-class GameWindow;
 class City : public Interface::ICity
 {
 public:
@@ -101,7 +102,7 @@ public:
      * \param basic Game's background type
      * \param statistics A pointer to city's statistics class
      */
-    void initializeCity(std::shared_ptr<StudentSide::GameWindow> window, bool basic, std::shared_ptr<StudentSide::Statistics> statistics);
+    void initializeCity(std::shared_ptr<GameWindow> window, bool basic, std::shared_ptr<Statistics> statistics);
 
     /*!
      * \brief executeUserCommand executes the command that user wants
@@ -151,17 +152,20 @@ public:
 private:
 
     QTime clock_;
-    std::shared_ptr<StudentSide::GameWindow> window_ = nullptr;
+
     bool basic_backround_ = true;
     bool game_over_ = false;
 
     std::map<std::shared_ptr<Interface::IStop>, ActorItem*> bus_stops_;
     std::map<std::shared_ptr<Interface::IActor>, ActorItem*> game_actors_;
+
     ActorItem* missile_item_ = nullptr;
     ActorItem* character_item_ = nullptr;
+
+    std::shared_ptr<GameWindow> window_ = nullptr;
     std::shared_ptr<Interface::IActor> character_ = nullptr;
-    std::shared_ptr<StudentSide::Statistics> statistics_ = nullptr;
-    std::shared_ptr<StudentSide::Missile> missile_ = nullptr;
+    std::shared_ptr<Statistics> statistics_ = nullptr;
+    std::shared_ptr<Missile> missile_ = nullptr;
 };
 
 }

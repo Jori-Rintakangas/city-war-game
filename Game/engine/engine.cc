@@ -5,12 +5,12 @@ namespace StudentSide
 {
 
 Engine::Engine() :
-    city_(new StudentSide::City),
-    game_character_(new StudentSide::GameCharacter),
-    window_(new StudentSide::GameWindow(nullptr, city_)),
+    city_(new City),
+    game_character_(new GameCharacter),
+    window_(new GameWindow(nullptr, city_)),
     game_logic_(new CourseSide::Logic),
-    statistics_(new StudentSide::Statistics(window_)),
-    tower_item_(new StudentSide::Missile())
+    statistics_(new Statistics(window_)),
+    tower_item_(new Missile())
 {
 }
 

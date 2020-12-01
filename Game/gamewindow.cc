@@ -28,7 +28,6 @@ GameWindow::GameWindow(QWidget *parent, std::shared_ptr<City> game_city) :
     map->setSceneRect(0,0,width_,height_);
 
     resize(minimumSizeHint());
-    //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(displayLeftTime()));
@@ -60,7 +59,7 @@ ActorItem* GameWindow::addActor(int locX, int locY, int type)
     return nActor;
 }
 
-void GameWindow::moveActor(ActorItem* item, int locX, int locY, int type)
+void GameWindow::moveActor(ActorItem* item, int locX, int locY)
 {
     if ( item != nullptr)
     {

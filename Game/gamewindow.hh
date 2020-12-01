@@ -30,11 +30,11 @@ namespace StudentSide
 
 const int X_SCALE = 349;
 const int Y_SCALE = 553;
+class City;
 
 /**
  * @brief defines operations of the game window
  */
-class City;
 class GameWindow : public QMainWindow
 {
     Q_OBJECT
@@ -45,7 +45,7 @@ public:
      * @param parent is pointing the parent class.
      * @param game_city is pointer of city class for building the game environment.
      */
-    explicit GameWindow(QWidget *parent = nullptr, std::shared_ptr<StudentSide::City> game_city = nullptr);
+    explicit GameWindow(QWidget *parent = nullptr, std::shared_ptr<City> game_city = nullptr);
 
     /**
      * @brief virtual destructor of game window
@@ -68,7 +68,7 @@ public:
      * @param locY where the item will be moved on y axis
      * @param type of movement
      */
-    void moveActor(ActorItem* item, int locX, int locY, int type = 0);
+    void moveActor(ActorItem* item, int locX, int locY);
 
     /**
      * @brief delete item from the map
@@ -124,11 +124,11 @@ private slots:
     void displayLeftTime();
 
 private:
-    Ui::GameWindow *ui;
-    QGraphicsScene *map;
-    QTimer *timer;
-    std::shared_ptr<StudentSide::City> game_city_;
-    StartDialog* dialog_;
+    Ui::GameWindow *ui = nullptr;
+    QGraphicsScene *map = nullptr;
+    QTimer *timer = nullptr;
+    std::shared_ptr<City> game_city_ = nullptr;
+    StartDialog* dialog_ = nullptr;
 
     int width_ = 1095; //pxls
     int height_ = 592;
