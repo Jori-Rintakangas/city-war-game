@@ -114,8 +114,7 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
             item->updateBusPassengerNum(bus->getPassengers().size());
         }
         updateBusStops();
-        missile_->updatePosition(missile_item_);
-        missileHit();
+        updateMissilePosition();
     }
 }
 
@@ -243,6 +242,12 @@ bool City::locationIsValid(Interface::Location loc)
         return true;
     }
     return false;
+}
+
+void City::updateMissilePosition()
+{
+    missile_->updatePosition(missile_item_);
+    missileHit();
 }
 
 }

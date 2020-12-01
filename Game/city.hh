@@ -139,6 +139,11 @@ public:
     bool locationIsValid(Interface::Location loc);
 
     /*!
+     * \brief updateMissilePosition updates the missile position on the screen
+     */
+    void updateMissilePosition();
+
+    /*!
      * \brief City destructor
      */
     virtual ~City();
