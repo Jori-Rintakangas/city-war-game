@@ -50,6 +50,42 @@ public:
      */
     void enemyDestroyed(int enemy_num);
 
+    /*!
+     * \brief getTotalShots returns the total amount of shots happened during the game
+     * \return amount of total shots
+     */
+    int getTotalShots() const;
+
+    /*!
+     * \brief getHitShots returns the amount of shots that hit the enemy during the game
+     * \return amount of shots that hit the enemy
+     */
+    int getHitShots() const;
+
+    /*!
+     * \brief getDestroyedBuses returns the amount of destroyed buses during the game
+     * \return The amount of destroyed buses
+     */
+    int getDestroyedBuses() const;
+
+    /*!
+     * \brief getDestroyedEnemies returns the amount of destroyed enemies during the game
+     * \return The amount of destroyed enemies
+     */
+    int getDestroyedEnemies() const;
+
+    /*!
+     * \brief getScore returns the score obtained during the game
+     * \return The score of the game
+     */
+    int getScore() const;
+
+    /*!
+     * \brief getAccuracy returns the shooting accuracy obtained during the game
+     * \return The shooting accuracy of the game
+     */
+    int getAccuracy() const;
+
 private:
     std::shared_ptr<GameWindow> window_ = nullptr;
 
