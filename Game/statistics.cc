@@ -42,4 +42,34 @@ void Statistics::enemyDestroyed(int enemy_num)
     destroyed_enemies_ += enemy_num;
 }
 
+int Statistics::getTotalShots() const
+{
+    return total_shots_;
+}
+
+int Statistics::getHitShots() const
+{
+    return hit_shots_;
+}
+
+int Statistics::getDestroyedBuses() const
+{
+    return destroyed_buses_;
+}
+
+int Statistics::getDestroyedEnemies() const
+{
+    return destroyed_enemies_;
+}
+
+int Statistics::getScore() const
+{
+    return score_;
+}
+
+int Statistics::getAccuracy() const
+{
+    return accuracy_;
+}
+
 } //namespace
