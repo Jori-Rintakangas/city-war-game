@@ -10,7 +10,7 @@
 
 #include <QTime>
 #include <QKeyEvent>
-
+#include <unordered_map>
 
 const int BUS_STOP = 1;
 const int BUS = 2;
@@ -156,8 +156,8 @@ private:
     bool basic_backround_ = true;
     bool game_over_ = false;
 
-    std::map<std::shared_ptr<Interface::IStop>, ActorItem*> bus_stops_;
-    std::map<std::shared_ptr<Interface::IActor>, ActorItem*> game_actors_;
+    std::unordered_map<std::shared_ptr<Interface::IStop>, ActorItem*> bus_stops_;
+    std::unordered_map<std::shared_ptr<Interface::IActor>, ActorItem*> game_actors_;
 
     ActorItem* missile_item_ = nullptr;
     ActorItem* character_item_ = nullptr;

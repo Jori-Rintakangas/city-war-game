@@ -27,7 +27,7 @@ bool Engine::start()
         city_->addActor(tower_item_);
         city_->startGame();
 
-        game_logic_->setTime(16,0);
+        game_logic_->setTime(DEFAULT_HOUR, DEFAULT_MIN);
         game_logic_->takeCity(city_);
         game_logic_->fileConfig();
         game_logic_->finalizeGameStart();

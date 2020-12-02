@@ -112,7 +112,7 @@ public:
     void keyPressEvent(QKeyEvent* event) override;
 
     /**
-     * @brief checking the game is started by user
+     * @brief checks that the game was started from the start dialog
      * @return the game is started or not
      */
     bool isStarted();

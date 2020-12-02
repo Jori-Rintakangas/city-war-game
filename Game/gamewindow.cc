@@ -50,13 +50,13 @@ GameWindow::~GameWindow()
 
 ActorItem* GameWindow::addActor(int locX, int locY, int type)
 {
-    ActorItem* nActor = new ActorItem(X_SCALE + locX, Y_SCALE - locY, type);
-    if ( type == 4 ) // if target character
+    ActorItem* n_actor = new ActorItem(X_SCALE + locX, Y_SCALE - locY, type);
+    if ( type == CHARACTER || type == MISSILE )
     {
-        nActor->setZValue(1); // used to keep target on top of other items
+        n_actor->setZValue(1); // used to keep on top of other items
     }
-    map->addItem(nActor);
-    return nActor;
+    map->addItem(n_actor);
+    return n_actor;
 }
 
 void GameWindow::moveActor(ActorItem* item, int locX, int locY)
@@ -96,7 +96,7 @@ void GameWindow::displayLeftTime()
     ui->left_m->display(left_min_);
     ui->left_s->display(left_sec_);
 
-    if (left_min_ == 0 and left_sec_ == 0)
+    if (left_min_ == 0 && left_sec_ == 0)
     {
         gameOver(false);
     }

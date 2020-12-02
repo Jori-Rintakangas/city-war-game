@@ -44,7 +44,7 @@ Interface::Location Missile::createMissile()
 
 void Missile::updatePosition(ActorItem* missile_item)
 {
-    if ( missile_item->x()> end_x_ and missile_item->y() > end_y_)
+    if ( missile_item->x()> end_x_ && missile_item->y() > end_y_)
     {
         missile_item->setCoord(MIN_X, MIN_Y);
         getEndPostion();
@@ -53,8 +53,6 @@ void Missile::updatePosition(ActorItem* missile_item)
     else
     {
         missile_item->moveBy(step_x_, step_y_);
-        //location_.setXY(location_.giveX() + step_x_, location_.giveY() - step_y_);
-        //move(location_);
     }
 }
 

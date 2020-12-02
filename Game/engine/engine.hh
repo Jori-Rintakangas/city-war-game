@@ -16,15 +16,28 @@
 const QString BACKROUND_SMALL = ":/offlinedata/offlinedata/kartta_pieni_500x500.png";
 const QString BACKROUND_BIG = ":/offlinedata/offlinedata/kartta_iso_1095x592.png";
 
+const int DEFAULT_HOUR = 16;
+const int DEFAULT_MIN = 0;
+
 namespace StudentSide
 {
 
+/*!
+ * \brief The Engine class provides necessary resources for the game
+ */
 class Engine : public QObject
 {
     Q_OBJECT
 public:
+    /*!
+     * \brief Engine constructor
+     */
     Engine();
 
+    /*!
+     * \brief start calls methods to initialize game
+     * \return true if game was started, false otherwise
+     */
     bool start();
 
 private:
