@@ -1,8 +1,7 @@
 #ifndef GAMECHARACTER_HH
 #define GAMECHARACTER_HH
 
-#include "interfaces/icity.hh"
-#include "gamewindow.hh"
+#include "interfaces/iactor.hh"
 #include "core/location.hh"
 
 namespace StudentSide

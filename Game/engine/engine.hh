@@ -1,17 +1,16 @@
 #ifndef ENGINE_HH
 #define ENGINE_HH
 
-#include <QObject>
-#include <memory>
-
-#include "interfaces/icity.hh"
-#include "graphics/simpleactoritem.hh"
 #include "gamewindow.hh"
 #include "core/logic.hh"
 #include "city.hh"
 #include "gamecharacter.hh"
 #include "statistics.hh"
 #include "missile.hh"
+
+#include <QObject>
+#include <memory>
+
 
 const QString BACKROUND_SMALL = ":/offlinedata/offlinedata/kartta_pieni_500x500.png";
 const QString BACKROUND_BIG = ":/offlinedata/offlinedata/kartta_iso_1095x592.png";
@@ -28,6 +27,7 @@ namespace StudentSide
 class Engine : public QObject
 {
     Q_OBJECT
+
 public:
     /*!
      * \brief Engine constructor

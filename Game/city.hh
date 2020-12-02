@@ -2,7 +2,6 @@
 #define CITY_HH
 
 #include "interfaces/icity.hh"
-#include "gamewindow.hh"
 #include "gamecharacter.hh"
 #include "statistics.hh"
 #include "actors/nysse.hh"

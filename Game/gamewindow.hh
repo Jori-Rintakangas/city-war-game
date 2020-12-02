@@ -1,12 +1,11 @@
 #ifndef GAMEWINDOW_HH
 #define GAMEWINDOW_HH
 
-#include "interfaces/iactor.hh"
 #include "actoritem.hh"
-#include "gamecharacter.hh"
 #include "city.hh"
 #include "startdialog.hh"
 #include "ui_startdialog.h"
+
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QTimer>
