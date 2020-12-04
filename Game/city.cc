@@ -14,15 +14,20 @@ City::~City()
 
 }
 
-void City::setBackground(QImage &basicbackground, QImage &bigbackground)
+void City::setBackground(QImage &basic_, QImage &big_)
 {
-    if ( basic_backround_ )
+    QImage background;
+    if ( basic_backround_ == false )
     {
-        window_->setPicture(basicbackground);
+        background = big_;
     }
     else
     {
-        window_->setPicture(bigbackground);
+        background = basic_;
+    }
+    if ( window_->setPicture(background) == false )
+    {
+        throw Interface::InitError("Setting the background picture was unsuccesful or the picture was invalid");
     }
 }
 
@@ -48,6 +53,10 @@ void City::startGame()
 
 void City::addActor(std::shared_ptr<Interface::IActor> new_actor)
 {
+    if ( game_actors_.find(new_actor) != game_actors_.end() )
+    {
+        throw Interface::GameError("Actor is already in the city");
+    }
     ActorItem* actor_item = nullptr;
     Interface::Location actor_location = new_actor->giveLocation();
     if ( std::dynamic_pointer_cast<Interface::IVehicle>(new_actor) != nullptr )
@@ -63,7 +72,7 @@ void City::addActor(std::shared_ptr<Interface::IActor> new_actor)
         character_item_ = actor_item;
         character_ = new_actor;
     }
-    else if (std::dynamic_pointer_cast<Missile>(new_actor) != nullptr)
+    else if ( std::dynamic_pointer_cast<Missile>(new_actor) != nullptr )
     {
         actor_item = window_->addActor(actor_location.giveX(), actor_location.giveY(), MISSILE);
         missile_item_ = actor_item;
@@ -82,6 +91,10 @@ void City::removeActor(std::shared_ptr<Interface::IActor> actor)
         actor->remove();
         actorRemoved(actor);
         game_actors_.erase(actor);
+    }
+    else
+    {
+        throw Interface::GameError("Actor not found in the city");
     }
 }
 

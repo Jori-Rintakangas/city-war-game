@@ -58,7 +58,7 @@ void Missile::updatePosition(ActorItem* missile_item)
 
 int Missile::randomNumberGenerator(int min_val, int max_val)
 {
-  return (int) (rand() % (max_val - min_val + 1)) + min_val;
+    return (int) (rand() % (max_val - min_val + 1)) + min_val;
 }
 
 void Missile::getEndPostion()

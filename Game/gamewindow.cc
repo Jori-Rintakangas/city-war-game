@@ -76,9 +76,14 @@ void GameWindow::deleteActor(ActorItem* item)
     }
 }
 
-void GameWindow::setPicture(QImage &img)
+bool GameWindow::setPicture(QImage &img)
 {
     map->setBackgroundBrush(img);
+    if ( map->backgroundBrush() == Qt::NoBrush )
+    {
+        return false;
+    }
+    return true;
 }
 
 void GameWindow::readInputTime(int input_min)

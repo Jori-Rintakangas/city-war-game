@@ -18,6 +18,10 @@ const QString BACKROUND_BIG = ":/offlinedata/offlinedata/kartta_iso_1095x592.png
 const int DEFAULT_HOUR = 16;
 const int DEFAULT_MIN = 0;
 
+const int GAME_STARTED = 0;
+const int GAME_NOT_STARTED = -1;
+const int EXCEPTION = 1;
+
 namespace StudentSide
 {
 
@@ -35,10 +39,10 @@ public:
     Engine();
 
     /*!
-     * \brief start calls methods to initialize game
-     * \return true if game was started, false otherwise
+     * \brief start calls methods to initialize game and catches exceptions
+     * \return 0 if user started the game, -1 if user did not start the game, 1 if exception caught
      */
-    bool start();
+    int start();
 
 private:
 

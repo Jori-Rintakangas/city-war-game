@@ -76,10 +76,11 @@ public:
     void deleteActor(ActorItem* item);
 
     /**
-     * @brief set picture of the map.
-     * @param img is the background picture
+     * \brief setPicture sets the background picture of the game
+     * \param img A picture for the game backround
+     * \return true if setting picture was succesful, false otherwise
      */
-    void setPicture(QImage &img);
+    bool setPicture(QImage &img);
 
     /**
      * @brief read input time given by user

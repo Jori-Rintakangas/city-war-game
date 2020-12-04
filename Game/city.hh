@@ -6,6 +6,8 @@
 #include "statistics.hh"
 #include "actors/nysse.hh"
 #include "missile.hh"
+#include "errors/initerror.hh"
+#include "errors/gameerror.hh"
 
 #include <QTime>
 #include <QKeyEvent>
@@ -53,7 +55,7 @@ public:
 
     /*! @copydoc Interface::ICity::setBackround(QImage& basicbackground,QImage& bigbackground)
      */
-    void setBackground(QImage& basicbackground, QImage& bigbackground);
+    void setBackground(QImage& basic_, QImage& big_);
 
     /*! @copydoc Interface::ICity::setClock(QTime clock)
      */
@@ -152,7 +154,7 @@ private:
 
     QTime clock_;
 
-    bool basic_backround_ = true;
+    bool basic_backround_ = false;
     bool game_over_ = false;
 
     std::unordered_map<std::shared_ptr<Interface::IStop>, ActorItem*> bus_stops_;

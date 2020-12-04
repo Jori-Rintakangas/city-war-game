@@ -14,27 +14,39 @@ Engine::Engine() :
 {
 }
 
-bool Engine::start()
+int Engine::start()
 {
-    if ( window_->isStarted() )
+    try
     {
-        game_character_->createCharacter();
-        tower_item_->createMissile();
+        if ( window_->isStarted() )
+        {
+            game_character_->createCharacter();
+            tower_item_->createMissile();
 
-        city_->initializeCity(window_, false, statistics_);
-        city_->setBackground(basic_, big_);
-        city_->addActor(game_character_);
-        city_->addActor(tower_item_);
-        city_->startGame();
+            city_->initializeCity(window_, false, statistics_);
+            city_->setBackground(basic_, big_);
+            city_->addActor(game_character_);
+            city_->addActor(tower_item_);
+            city_->startGame();
 
-        game_logic_->setTime(DEFAULT_HOUR, DEFAULT_MIN);
-        game_logic_->takeCity(city_);
-        game_logic_->fileConfig();
-        game_logic_->finalizeGameStart();
-
-        return true;
+            game_logic_->setTime(DEFAULT_HOUR, DEFAULT_MIN);
+            game_logic_->takeCity(city_);
+            game_logic_->fileConfig();
+            game_logic_->finalizeGameStart();
+            return GAME_STARTED;
+        }
+        return GAME_NOT_STARTED;
     }
-    return false;
+    catch ( Interface::GameError const& error )
+    {
+        qDebug() << "Game error: " << error.giveMessage();
+        return EXCEPTION;
+    }
+    catch ( Interface::InitError const& error)
+    {
+        qDebug() << "Initialization error: " << error.giveMessage();
+        return EXCEPTION;
+    }
 }
 
 }
