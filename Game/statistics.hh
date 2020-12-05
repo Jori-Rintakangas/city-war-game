@@ -1,12 +1,8 @@
 #ifndef STATISTICS_HH
 #define STATISTICS_HH
 
-#include "gamewindow.hh"
-
 namespace StudentSide
 {
-
-class GameWindow;
 /**
  * @brief Statistics class contains operations for handling statistics data.
  */

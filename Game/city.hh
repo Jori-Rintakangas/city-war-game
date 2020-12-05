@@ -1,6 +1,7 @@
 #ifndef CITY_HH
 #define CITY_HH
 
+#include "gamewindow.hh"
 #include "interfaces/icity.hh"
 #include "gamecharacter.hh"
 #include "statistics.hh"
