@@ -36,47 +36,46 @@ Statisticstest::~Statisticstest()
 
 void Statisticstest::testInitializationValues()
 {
-    StudentSide::Statistics statistics(nullptr);
-    QVERIFY2(statistics.getDestroyedBuses() == 0, "Error, wrong initalization value");
-    QVERIFY2(statistics.getDestroyedEnemies() == 0, "Error, wrong initalization value");
-    QVERIFY2(statistics.getHitShots() == 0, "Error, wrong initalization value");
-    QVERIFY2(statistics.getTotalShots() == 0, "Error, wrong initalization value");
+    StudentSide::Statistics statistics;
+    QVERIFY2(statistics.busDestroyed() == 0, "Error, wrong initalization value");
+    QVERIFY2(statistics.enemyDestroyed(0) == 0, "Error, wrong initalization value");
+    QVERIFY2(statistics.shotHit() == 0, "Error, wrong initalization value");
+    QVERIFY2(statistics.shotFired() == 0, "Error, wrong initalization value");
 }
 
 void Statisticstest::testIncrements()
 {
-    StudentSide::Statistics statistics(nullptr);
+    StudentSide::Statistics statistics;
     statistics.busDestroyed();
-    QVERIFY2(statistics.getDestroyedBuses() == 1, "Error, invalid increment in Destroyed Buses");
+    QVERIFY2(statistics.busDestroyed() == 1, "Error, invalid increment in Destroyed Buses");
 
     statistics.enemyDestroyed(1);
-    QVERIFY2(statistics.getDestroyedEnemies() == 1, "Error, invalid increment in Destroyed Enemies");
+    QVERIFY2(statistics.enemyDestroyed(1) == 1, "Error, invalid increment in Destroyed Enemies");
 
     statistics.shotHit();
-    QVERIFY2(statistics.getHitShots() == 1, "Error, invalid increment in Hit Shots");
+    QVERIFY2(statistics.shotHit() == 1, "Error, invalid increment in Hit Shots");
 
     statistics.shotFired();
-    QVERIFY2(statistics.getTotalShots() == 1, "Error, invalid increment in Fired Shots");
+    QVERIFY2(statistics.shotFired() == 1, "Error, invalid increment in Fired Shots");
 }
 
 void Statisticstest::testUpdates()
 {
     std::shared_ptr<StudentSide::City> city(new StudentSide::City);
     std::shared_ptr<StudentSide::GameWindow> window(new StudentSide::GameWindow(nullptr, city));
-    StudentSide::Statistics statistics(window);
+    StudentSide::Statistics statistics;
 
     statistics.busDestroyed();
     statistics.enemyDestroyed(1);
     statistics.shotHit();
     statistics.shotFired();
 
-    statistics.scoreUpdate();
-    statistics.accuracyUpdate();
+    statistics.score();
+    statistics.accuracy();
 
-    QVERIFY2(statistics.getScore() == 4, "Error, invalid score value");
-    QVERIFY2(statistics.getAccuracy() == 100, "Error, invalid accuracy value");
+    QVERIFY2(statistics.score() == 4, "Error, invalid score value");
+    QVERIFY2(statistics.accuracy() == 100, "Error, invalid accuracy value");
 }
-
 
 QTEST_MAIN(Statisticstest)
 

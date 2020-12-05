@@ -5,71 +5,49 @@
 namespace StudentSide
 {
 
-Statistics::Statistics(std::shared_ptr<GameWindow> window) :
-    window_(window)
+Statistics::Statistics()
 {
 }
 
-void Statistics::scoreUpdate()
+int Statistics::score()
 {
     score_ = destroyed_buses_ * 3 + destroyed_enemies_;
-    window_->updateScore(score_);
+    return score_;
 }
 
-void Statistics::accuracyUpdate()
+int Statistics::accuracy()
 {
     accuracy_ = (int) round(hit_shots_ / total_shots_ * 100);
-    window_->updateAccuracy(accuracy_);
+    return accuracy_;
 }
 
-void Statistics::shotFired()
+int Statistics::shotFired()
 {
     total_shots_++;
-}
-
-void Statistics::shotHit()
-{
-    hit_shots_++;
-}
-
-void Statistics::busDestroyed()
-{
-    destroyed_buses_++;
-}
-
-void Statistics::enemyDestroyed(int enemy_num)
-{
-    destroyed_enemies_ += enemy_num;
-}
-
-int Statistics::getTotalShots() const
-{
     return total_shots_;
 }
 
-int Statistics::getHitShots() const
+double Statistics::shotHit()
+{
+    hit_shots_++;
+    return hit_shots_;
+}
+
+double Statistics::getHitShotNum()
 {
     return hit_shots_;
 }
 
-int Statistics::getDestroyedBuses() const
+int Statistics::busDestroyed()
 {
+    destroyed_buses_++;
     return destroyed_buses_;
 }
 
-int Statistics::getDestroyedEnemies() const
+int Statistics::enemyDestroyed(int enemy_num)
 {
+    destroyed_enemies_ += enemy_num;
     return destroyed_enemies_;
-}
-
-int Statistics::getScore() const
-{
-    return score_;
-}
-
-int Statistics::getAccuracy() const
-{
-    return accuracy_;
 }
 
 } //namespace

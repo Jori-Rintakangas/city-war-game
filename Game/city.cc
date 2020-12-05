@@ -182,22 +182,27 @@ void City::executeUserCommand(QKeyEvent *event)
     }
     if ( event->key() == Qt::Key_L )
     {
-        statistics_->shotFired();
+        int destroyed_buses = 0;
+        int destroyed_enemies = 0;
+        double hit_shots = statistics_->getHitShotNum();
+        double total_shots = statistics_->shotFired();
         std::vector<std::shared_ptr<Interface::IActor>> actors = getNearbyActors(loc);
         if ( actors.size() != 0 )
         {
-            statistics_->shotHit();
+            hit_shots = statistics_->shotHit();
             for ( auto actor : actors )
             {
-                statistics_->busDestroyed();
+                destroyed_buses = statistics_->busDestroyed();
                 std::shared_ptr<CourseSide::Nysse> bus = nullptr;
                 bus = std::dynamic_pointer_cast<CourseSide::Nysse>(actor);
-                statistics_->enemyDestroyed(bus->getPassengers().size());
+                destroyed_enemies = statistics_->enemyDestroyed(bus->getPassengers().size());
                 bus->remove();
             }
-            statistics_->scoreUpdate();
+            int score = statistics_->score();
+            window_->updateScore(score, destroyed_buses, destroyed_enemies);
         }
-        statistics_->accuracyUpdate();
+        int accuracy = statistics_->accuracy();
+        window_->updateAccuracy(accuracy, hit_shots, total_shots);
     }
 }
 

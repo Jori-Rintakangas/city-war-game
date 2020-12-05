@@ -9,7 +9,7 @@ Engine::Engine() :
     game_character_(new GameCharacter),
     window_(new GameWindow(nullptr, city_)),
     game_logic_(new CourseSide::Logic),
-    statistics_(new Statistics(window_)),
+    statistics_(new Statistics()),
     tower_item_(new Missile())
 {
 }

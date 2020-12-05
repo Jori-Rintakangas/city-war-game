@@ -17,85 +17,58 @@ public:
      * @brief constructor of Statistics
      * @param window is pointer of the game window.
      */
-    Statistics(std::shared_ptr<GameWindow> window);
+    Statistics();
 
     /**
-     * @brief new score is calculated and updated at game window.
+     * @brief score new score is calculated and updated at game window.
+     * @return new score value
      */
-    void scoreUpdate();
+    int score();
 
     /**
-     * @brief new accuracy is calculated and updated at game window.
+     * @brief accuracy new accuracy is calculated and updated at game window.
+     * @return new accuracy value
      */
-    void accuracyUpdate();
+    int accuracy();
 
     /**
-     * @brief count how many shot is fired.
+     * @brief shotFired counts how many shot is fired.
+     * @return number of shot fired
      */
-    void shotFired();
+    int shotFired();
 
     /**
-     * @brief count how many shot is hit the bus.
+     * @brief shotHit counts how many shot is hit the bus.
+     * @return number of shot hit the bus
      */
-    void shotHit();
+    double shotHit();
 
     /**
-     * @brief count how many buses are destroyed.
+     * @brief getHitShotNum gets how many times shot hits the buses until now
+     * @return the current number of shots hit the bus
      */
-    void busDestroyed();
+    double getHitShotNum();
 
     /**
-     * @brief count how many enemies are destroyed.
+     * @brief busDestroyed counts how many buses are destroyed.
+     * @return number of destroyed buses
+     */
+    int busDestroyed();
+
+    /**
+     * @brief enemyDestroyed counts how many enemies are destroyed.
      * @param enemy_num killed by the lastest shot.
+     * @return number of destroyed enemies
      */
-    void enemyDestroyed(int enemy_num);
-
-    /*!
-     * \brief getTotalShots returns the total amount of shots happened during the game
-     * \return amount of total shots
-     */
-    int getTotalShots() const;
-
-    /*!
-     * \brief getHitShots returns the amount of shots that hit the enemy during the game
-     * \return amount of shots that hit the enemy
-     */
-    int getHitShots() const;
-
-    /*!
-     * \brief getDestroyedBuses returns the amount of destroyed buses during the game
-     * \return The amount of destroyed buses
-     */
-    int getDestroyedBuses() const;
-
-    /*!
-     * \brief getDestroyedEnemies returns the amount of destroyed enemies during the game
-     * \return The amount of destroyed enemies
-     */
-    int getDestroyedEnemies() const;
-
-    /*!
-     * \brief getScore returns the score obtained during the game
-     * \return The score of the game
-     */
-    int getScore() const;
-
-    /*!
-     * \brief getAccuracy returns the shooting accuracy obtained during the game
-     * \return The shooting accuracy of the game
-     */
-    int getAccuracy() const;
+    int enemyDestroyed(int enemy_num);
 
 private:
-    std::shared_ptr<GameWindow> window_ = nullptr;
-
     int score_ = 0;
     int accuracy_ = 0; //%
     int destroyed_buses_ = 0;
     int destroyed_enemies_ = 0;
     double total_shots_ = 0;
     double hit_shots_ = 0;
-
 };
 
 } //namespace
