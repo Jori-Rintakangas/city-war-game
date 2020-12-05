@@ -77,7 +77,7 @@ void Statisticstest::scoreTest()
     }
     statistics.enemyDestroyed(destroyed_enemies);
 
-    QVERIFY2(statistics.score() == score, "Error, accuracy value wrong");
+    QVERIFY2(statistics.score() == score, "Error, score value wrong");
 }
 
 void Statisticstest::scoreTest_data()
