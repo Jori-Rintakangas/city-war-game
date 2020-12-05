@@ -41,6 +41,14 @@ GameWindow::GameWindow(QWidget *parent, std::shared_ptr<City> game_city) :
     ui->score->setReadOnly(true);
     ui->accuracy->setText(QString::number(0));
     ui->accuracy->setReadOnly(true);
+    ui->buses->setText(QString::number(0));
+    ui->buses->setReadOnly(true);
+    ui->enemies->setText(QString::number(0));
+    ui->enemies->setReadOnly(true);
+    ui->hit_shots->setText(QString::number(0));
+    ui->hit_shots->setReadOnly(true);
+    ui->tot_shots->setText(QString::number(0));
+    ui->tot_shots->setReadOnly(true);
 }
 
 GameWindow::~GameWindow()
@@ -123,16 +131,25 @@ void GameWindow::gameOver(bool killed)
     this->close();
 }
 
-void GameWindow::updateScore(int score)
+void GameWindow::updateScore(int score, int destroyed_buses, int destroyed_enemies)
 {
     score_ = score;
     ui->score->setText(QString::number(score_));
+    destroyed_buses_ = destroyed_buses;
+    ui->buses->setText(QString::number(destroyed_buses_));
+    destroyed_enemies_ = destroyed_enemies;
+    ui->enemies->setText(QString::number(destroyed_enemies_));
+
 }
 
-void GameWindow::updateAccuracy(int accuracy)
+void GameWindow::updateAccuracy(int accuracy, int hit_shots, int tot_shots)
 {
     accuracy_ = accuracy;
     ui->accuracy->setText(QString::number((accuracy)));
+    hit_shots_ = hit_shots;
+    ui->hit_shots->setText(QString::number(hit_shots_));
+    tot_shots_ = tot_shots;
+    ui->tot_shots->setText(QString::number(tot_shots_));
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)

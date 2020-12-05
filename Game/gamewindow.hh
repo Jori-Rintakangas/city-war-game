@@ -94,16 +94,20 @@ public:
     void gameOver(bool killed);
 
     /**
-     * @brief update score number on the line edit
+     * @brief updateScore update score number on the line edit
      * @param score is new score for updating
+     * @param destroyed_buses is new destroyed buses for updating
+     * @param destroyed_enemies is new destroyed enemes for updating
      */
-    void updateScore(int score = 0);
+    void updateScore(int score = 0, int destroyed_buses = 0, int destroyed_enemies = 0);
 
     /**
-     * @brief update accuracy number on line edit
+     * @brief updateAccuracy update accuracy, hit shots, and total shots number on line edit
      * @param accuracy is new accuracy for updating
+     * @param hit_shots is new shots hit the bus for updating
+     * @param tot_shots is new total number of shots for updating
      */
-    void updateAccuracy(int accuracy = 0);
+    void updateAccuracy(int accuracy = 0, int hit_shots = 0, int tot_shots = 0);
 
     /**
      * @brief checking the key press event
@@ -138,6 +142,10 @@ private:
     int left_sec_ = 0;
     int score_ = 0;
     int accuracy_ = 0;
+    int destroyed_buses_ = 0;
+    int destroyed_enemies_ = 0;
+    int hit_shots_ = 0;
+    int tot_shots_ = 0;
     QString status_ = "";
 };
 
