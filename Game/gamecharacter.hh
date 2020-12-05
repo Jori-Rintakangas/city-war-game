@@ -11,7 +11,6 @@ namespace StudentSide
  * \brief The GameCharacter class defines operations for the gamecharacter that user
  *  uses in the game.
  */
-
 class GameCharacter : public Interface::IActor
 {
 public:

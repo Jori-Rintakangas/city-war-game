@@ -19,8 +19,6 @@
 
 namespace Ui
 {
-
-
 class GameWindow;
 }
 

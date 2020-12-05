@@ -9,8 +9,8 @@ Engine::Engine() :
     game_character_(new GameCharacter),
     window_(new GameWindow(nullptr, city_)),
     game_logic_(new CourseSide::Logic),
-    statistics_(new Statistics()),
-    tower_item_(new Missile())
+    statistics_(new Statistics),
+    missile_(new Missile)
 {
 }
 
@@ -21,12 +21,12 @@ int Engine::start()
         if ( window_->isStarted() )
         {
             game_character_->createCharacter();
-            tower_item_->createMissile();
+            missile_->createMissile();
 
             city_->initializeCity(window_, false, statistics_);
             city_->setBackground(basic_, big_);
             city_->addActor(game_character_);
-            city_->addActor(tower_item_);
+            city_->addActor(missile_);
             city_->startGame();
 
             game_logic_->setTime(DEFAULT_HOUR, DEFAULT_MIN);

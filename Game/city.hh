@@ -40,7 +40,6 @@ const int CITY_EAST = 700;
 
 namespace StudentSide
 {
-class Statistics;
 class GameWindow;
 
 /**
@@ -145,6 +144,11 @@ public:
      * \brief updateMissilePosition updates the missile position on the screen
      */
     void updateMissilePosition();
+
+    /*!
+     * \brief shoot executes operations when user shoots the gun
+     */
+    void shoot();
 
     /*!
      * \brief City destructor

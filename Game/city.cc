@@ -163,7 +163,6 @@ void City::initializeCity(std::shared_ptr<GameWindow> window, bool basic, std::s
 
 void City::executeUserCommand(QKeyEvent *event)
 {
-    Interface::Location loc = character_->giveLocation();
     if ( event->key() == Qt::Key_D )
     {
         moveHorizontal(STEP);
@@ -182,27 +181,7 @@ void City::executeUserCommand(QKeyEvent *event)
     }
     if ( event->key() == Qt::Key_L )
     {
-        int destroyed_buses = 0;
-        int destroyed_enemies = 0;
-        double hit_shots = statistics_->getHitShotNum();
-        double total_shots = statistics_->shotFired();
-        std::vector<std::shared_ptr<Interface::IActor>> actors = getNearbyActors(loc);
-        if ( actors.size() != 0 )
-        {
-            hit_shots = statistics_->shotHit();
-            for ( auto actor : actors )
-            {
-                destroyed_buses = statistics_->busDestroyed();
-                std::shared_ptr<CourseSide::Nysse> bus = nullptr;
-                bus = std::dynamic_pointer_cast<CourseSide::Nysse>(actor);
-                destroyed_enemies = statistics_->enemyDestroyed(bus->getPassengers().size());
-                bus->remove();
-            }
-            int score = statistics_->score();
-            window_->updateScore(score, destroyed_buses, destroyed_enemies);
-        }
-        int accuracy = statistics_->accuracy();
-        window_->updateAccuracy(accuracy, hit_shots, total_shots);
+        shoot();
     }
 }
 
@@ -266,6 +245,33 @@ void City::updateMissilePosition()
 {
     missile_->updatePosition(missile_item_);
     missileHit();
+}
+
+void City::shoot()
+{
+    Interface::Location loc = character_->giveLocation();
+    int destroyed_buses = 0;
+    int destroyed_enemies = 0;
+    double hit_shots = statistics_->getHitShotNum();
+    double total_shots = statistics_->shotFired();
+    std::vector<std::shared_ptr<Interface::IActor>> actors = getNearbyActors(loc);
+
+    if ( actors.size() != 0 )
+    {
+        hit_shots = statistics_->shotHit();
+        for ( auto actor : actors )
+        {
+            destroyed_buses = statistics_->busDestroyed();
+            std::shared_ptr<CourseSide::Nysse> bus = nullptr;
+            bus = std::dynamic_pointer_cast<CourseSide::Nysse>(actor);
+            destroyed_enemies = statistics_->enemyDestroyed(bus->getPassengers().size());
+            bus->remove();
+        }
+        int score = statistics_->score();
+        window_->updateScore(score, destroyed_buses, destroyed_enemies);
+    }
+    int accuracy = statistics_->accuracy();
+    window_->updateAccuracy(accuracy, hit_shots, total_shots);
 }
 
 }

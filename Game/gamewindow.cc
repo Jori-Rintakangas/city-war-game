@@ -8,7 +8,7 @@
 #include <QTime>
 #include <QKeyEvent>
 
-const int PADDING = 10;
+const int PADDING = 40;
 const int SIZE_SCALE = 3;
 
 namespace StudentSide

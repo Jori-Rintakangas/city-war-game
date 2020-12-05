@@ -51,7 +51,7 @@ private:
     std::shared_ptr<GameWindow> window_ = nullptr;
     std::shared_ptr<CourseSide::Logic> game_logic_ = nullptr;
     std::shared_ptr<Statistics> statistics_ = nullptr;
-    std::shared_ptr<Missile> tower_item_ = nullptr;
+    std::shared_ptr<Missile> missile_ = nullptr;
 
     int gaming_time_ = 0;
     QImage basic_ = QImage(BACKROUND_SMALL);
