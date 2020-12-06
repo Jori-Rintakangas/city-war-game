@@ -8,6 +8,8 @@
 #include "statistics.hh"
 #include "missile.hh"
 
+#include <QDebug>
+
 const QString BACKROUND_SMALL = ":/offlinedata/offlinedata/kartta_pieni_500x500.png";
 const QString BACKROUND_BIG = ":/offlinedata/offlinedata/kartta_iso_1095x592.png";
 
