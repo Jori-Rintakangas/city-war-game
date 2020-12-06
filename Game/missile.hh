@@ -68,11 +68,12 @@ public:
      */
     void updatePosition(ActorItem* missile_item);
 
+private:
     /**
      * @brief randomNumberGenerator returns random number in the range
      * @param min_val for random number
      * @param max_val for random number
-     * @return
+     * @return return the random number between min and max value
      */
     int randomNumberGenerator(int min_val, int max_val);
 
@@ -86,7 +87,6 @@ public:
      */
     void getStepSize();
 
-private:
     Interface::Location location_;
 
     bool removed_ = false;

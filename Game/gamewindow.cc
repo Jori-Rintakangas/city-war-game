@@ -94,12 +94,6 @@ bool GameWindow::setPicture(QImage &img)
     return true;
 }
 
-void GameWindow::readInputTime(int input_min)
-{
-    ui->left_m->display(input_min);
-    total_time_ = input_min * 60; //s
-}
-
 void GameWindow::displayLeftTime()
 {
     ++spent_time_;
@@ -166,5 +160,10 @@ bool GameWindow::isStarted()
     return true;
 }
 
+void GameWindow::readInputTime(int input_min)
+{
+    ui->left_m->display(input_min);
+    total_time_ = input_min * 60; //s
+}
 } //namespace
 

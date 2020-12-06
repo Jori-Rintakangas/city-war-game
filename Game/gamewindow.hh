@@ -16,6 +16,8 @@
 #include <QPushButton>
 #include <QString>
 
+const int X_SCALE = 349;
+const int Y_SCALE = 553;
 
 namespace Ui
 {
@@ -24,9 +26,6 @@ class GameWindow;
 
 namespace StudentSide
 {
-
-const int X_SCALE = 349;
-const int Y_SCALE = 553;
 class City;
 
 /**
@@ -81,12 +80,6 @@ public:
     bool setPicture(QImage &img);
 
     /**
-     * @brief read input time given by user
-     * @param input_min what user chose.
-     */
-    void readInputTime(int input_min);
-
-    /**
      * @brief implementation when game is over
      */
     void gameOver(bool killed);
@@ -126,6 +119,12 @@ private slots:
     void displayLeftTime();
 
 private:
+    /**
+     * @brief read input time given by user
+     * @param input_min what user chose.
+     */
+    void readInputTime(int input_min);
+
     Ui::GameWindow *ui = nullptr;
     QGraphicsScene *map = nullptr;
     QTimer *timer = nullptr;
