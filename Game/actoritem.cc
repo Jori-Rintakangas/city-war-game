@@ -19,6 +19,8 @@ QRectF ActorItem::boundingRect() const
 
 void ActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
     if (type_ == 1) // Bus stop drawing
     {
         painter->setBrush(Qt::black);
@@ -36,7 +38,7 @@ void ActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         painter->setBrush(Qt::yellow);
         painter->drawRect(0, 0, 30, 15); // body
         painter->setBrush(Qt::white);
-        painter->drawRect(0, 0, 10, 8); // window
+        painter->drawRect(0, 0, 8, 6); // window
         painter->setBrush(Qt::black);
         painter->drawEllipse(4, 13, 8, 8); // left wheel
         painter->drawEllipse(17, 13, 8, 8); // right wheel
@@ -44,13 +46,9 @@ void ActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         QString str_passenger_num = QString::number(passenger_num_);
         painter->drawText(15, 13, str_passenger_num); // display passenger_num_
         painter->setBrush(Qt::black);
-        painter->drawEllipse(2, 2, 2, 2); //left eye
-        painter->drawEllipse(6, 2, 2, 2); //right eye
-        QRectF rectangle (3, 2, 5, 5);
-        int startAngle = -30 * 16;
-        int spanAngle = -120 * 16;
-        painter->drawChord(rectangle, startAngle, spanAngle); // driver mouth
-
+        painter->drawEllipse(1, 1, 1, 1); //left eye
+        painter->drawEllipse(5, 1, 1, 1); //right eye
+        painter->drawRect(2, 3, 3, 1); // driver mouth
     }
 
     if (type_ == 3) // Tower drawing
