@@ -22,6 +22,7 @@ const int MISSILE = 5;
 
 const int RANGE = 12;
 const int SCALE = 65;
+const int SHOT_RANGE = 7;
 
 const int MISSILE_HEAD_X = 65;
 const int MISSILE_HEAD_Y = 14;
