@@ -48,56 +48,56 @@ class GameWindow;
 class City : public Interface::ICity
 {
 public:
-    /*!
+    /**
      * \brief City constructor
      */
     City();
 
-    /*! @copydoc Interface::ICity::setBackround(QImage& basicbackground,QImage& bigbackground)
+    /** @copydoc Interface::ICity::setBackround(QImage& basicbackground,QImage& bigbackground)
      */
     void setBackground(QImage& basic_, QImage& big_);
 
-    /*! @copydoc Interface::ICity::setClock(QTime clock)
+    /** @copydoc Interface::ICity::setClock(QTime clock)
      */
     void setClock(QTime clock);
 
-    /*! @copydoc Interface::ICity::addStop(std::shared_ptr<IStop> stop)
+    /** @copydoc Interface::ICity::addStop(std::shared_ptr<IStop> stop)
      */
     void addStop(std::shared_ptr<Interface::IStop> stop);
 
-    /*! @copydoc Interface::ICity::startGame()
+    /** @copydoc Interface::ICity::startGame()
      */
     void startGame();
 
-    /*! @copydoc Interface::ICity::addActor(std::shared_ptr<IActor> newactor)
+    /** @copydoc Interface::ICity::addActor(std::shared_ptr<IActor> newactor)
      */
     void addActor(std::shared_ptr<Interface::IActor> newactor);
 
-    /*! @copydoc Interface::ICity::removeActor(std::shared_ptr<IActor> actor)
+    /** @copydoc Interface::ICity::removeActor(std::shared_ptr<IActor> actor)
      */
     void removeActor(std::shared_ptr<Interface::IActor> actor);
 
-    /*! @copydoc Interface::ICity::actorRemoved(std::shared_ptr<IActor> actor)
+    /** @copydoc Interface::ICity::actorRemoved(std::shared_ptr<IActor> actor)
      */
     void actorRemoved(std::shared_ptr<Interface::IActor> actor);
 
-    /*! @copydoc Interface::ICity::findActor(std::shared_ptr<IActor> actor) const
+    /** @copydoc Interface::ICity::findActor(std::shared_ptr<IActor> actor) const
      */
     bool findActor(std::shared_ptr<Interface::IActor> actor) const;
 
-    /*! @copydoc Interface::ICity::actorMoved(std::shared_ptr<IActor> actor)
+    /** @copydoc Interface::ICity::actorMoved(std::shared_ptr<IActor> actor)
      */
     void actorMoved(std::shared_ptr<Interface::IActor> actor);
 
-    /*! @copydoc Interface::ICity::getNearbyActors(Location loc) const
+    /** @copydoc Interface::ICity::getNearbyActors(Location loc) const
      */
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const;
 
-    /*! @copydoc Interface::ICity::isGameOver() const
+    /** @copydoc Interface::ICity::isGameOver() const
      */
     bool isGameOver() const;
 
-    /*!
+    /**
      * \brief initializeCity gets the initialization information for the city.
      * \param window A pointer to a gamewindow used in the game
      * \param basic Game's background type
@@ -105,57 +105,57 @@ public:
      */
     void initializeCity(std::shared_ptr<GameWindow> window, bool basic, std::shared_ptr<Statistics> statistics);
 
-    /*!
+    /**
      * \brief executeUserCommand executes the command that user wants
      * \param event A pointer that contains information of pressed key on the keyboard.
      */
     void executeUserCommand(QKeyEvent* event);
 
-    /*!
+    /**
+     * \brief City destructor
+     */
+    virtual ~City();
+
+private:
+
+    /**
      * \brief moveVertical moves game character in vertical direction in the gamewindow
      * \param amount The amount of movement
      */
     void moveVertical(qreal amount);
 
-    /*!
+    /**
      * \brief moveHorizontal moves game character in horizontal direction in the gamewindow
      * \param amount The amount of movement
      */
     void moveHorizontal(qreal amount);
 
-    /*!
+    /**
      * \brief missileHit checks if the missile hits the game character
      */
     void missileHit();
 
-    /*!
+    /**
      * \brief updateBusStops Updates the amount of passengers in the bus stop
      */
     void updateBusStops();
 
-    /*!
+    /**
      * \brief locationIsValid Checks whether the given location is valid
      * \param loc A Location whose position is checked
      * \return True if valid, false otherwise
      */
     bool locationIsValid(Interface::Location loc);
 
-    /*!
+    /**
      * \brief updateMissilePosition updates the missile position on the screen
      */
     void updateMissilePosition();
 
-    /*!
+    /**
      * \brief shoot executes operations when user shoots the gun
      */
     void shoot();
-
-    /*!
-     * \brief City destructor
-     */
-    virtual ~City();
-
-private:
 
     QTime clock_;
 

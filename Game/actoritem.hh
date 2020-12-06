@@ -51,13 +51,13 @@ public:
      */
     void setCoord(int x, int y);
 
-    /*!
+    /**
      * \brief updateBusPassengerNum updates the amount of passengers in the bus
      * \param amount The new amount of passengers
      */
     void updateBusPassengerNum(int amount);
 
-    /*!
+    /**
      * \brief updateStopPassengerNum updates the amount of passengers in the bus stop
      * \param amount The new amount of passengers
      */

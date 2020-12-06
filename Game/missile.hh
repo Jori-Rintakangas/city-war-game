@@ -45,13 +45,13 @@ public:
      */
     void move(Interface::Location loc);
 
-    /*!
+    /**
      * \brief isRemoved tells if the tower is removed from the game
      * \return true if removed, false if not
      */
     bool isRemoved() const;
 
-    /*!
+    /**
      * \brief remove the tower as removed
      */
     void remove();
