@@ -6,12 +6,11 @@
 #include <QPainter>
 #include <QtGlobal>
 
-namespace StudentSide
-{
-
 const int WIDTH = 130;
 const int HEIGHT = 130;
 
+namespace StudentSide
+{
 /**
  * @brief defines drawing and setting the actor item (= an object acting in the game).
  */
