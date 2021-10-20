@@ -15,7 +15,7 @@ university. The project was carried out in a group of two people.
 ## Illustration
 A view of the game
 
-![image](example.PNG)
+![image](/Assets/example.PNG)
 
 ## Technologies
 [Qt Graphics View Framework](https://doc.qt.io/qt-5/graphicsview.html)
